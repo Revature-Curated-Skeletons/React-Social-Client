@@ -27,7 +27,8 @@ describe('Post testing', () => {
       id: 0,
       title: 'Shreks Swamp',
       postText: '',
-      imageURL: '',
+      embedURL: '',
+      contentType:'',
       date: '',
       profile: aProfile,
       comments: [{

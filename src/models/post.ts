@@ -5,7 +5,8 @@ export interface Post {
     id: number,
     title: string,
     postText: string,
-    imageURL: string,
+    embedURL: string,
+    contentType: string,
     date: string,
     profile: Profile,
     comments: Comment[]
@@ -15,7 +16,8 @@ export const initialPost: Post = {
     id: 0,
     title: "",
     postText: "",
-    imageURL: "",
+    embedURL: "",
+    contentType:"",
     date: "",
     profile: {
         id: 0,

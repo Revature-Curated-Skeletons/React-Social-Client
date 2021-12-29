@@ -40,6 +40,7 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
         checkIfPostCanBeLiked(post.id).then(canLikeReturn => setCanLike(!canLikeReturn));
     }, [shouldUpdateLikes]);
 
+    console.log(post.embedURL);
     return (
         <Card id="postCard">
             <Card.Header>
@@ -50,7 +51,11 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
                     style={{ float: 'right', marginTop: "-5rem" }} disabled={!canLike}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Reverb!"/></Button>
             </Card.Header>
             <Card.Body id="postBody">
-                <Card.Img variant='top' src={"" + post.imageURL} />
+                {/*Sets the contents of a post. First by setting the embed.*/}
+                {/*Todo: Function that can recognize an image from a .jpg, .jpeg, .jfif, .pjpeg, .pjp, .gifv, .gif, or .png */}
+
+                {/*<Card.Img as ='iframe' variant='top' src={"https://www.youtube.com/embed/JTdTwkdxTMk?" } frameBorder='0' allowFullScreen/>*/}
+                <Card.Img variant='top' src={"" + post.embedURL} />
                 <Card.Text>
                     {post.postText}
                 </Card.Text>
