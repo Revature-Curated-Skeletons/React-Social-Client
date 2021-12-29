@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../../app/store'
 
 const reverbClient = axios.create( {
-  baseURL: 'Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com',
+  baseURL: 'http://Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -10,7 +10,7 @@ const reverbClient = axios.create( {
 } );
 
 const reverbClientWithAuth = axios.create( {
-  baseURL: 'Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com',
+  baseURL: 'http://Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': ""
