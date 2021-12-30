@@ -10,7 +10,7 @@ import { useAppSelector } from './app/hooks';
 const App = () => {
 
   //const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const [theme, setTheme] = useState('dark');
+const [theme, setTheme] = useState('light');
 
 
 function switchTheme () {
