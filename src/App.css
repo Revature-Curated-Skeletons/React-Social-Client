@@ -3,7 +3,7 @@ Page styling regulars:
   
   Primary colors: 
     orange: #F26925
-    white: #FFFFFF
+    var(--text-primary): #FFFFFF
     dark gray: #474C55
   
   secondary colors:
@@ -42,15 +42,16 @@ Page styling regulars:
 /*Testing Darkula*/
 body {
     padding: 25px;
-    background-color: white;
-    color: black;
+    background-color: var(--background);
+    color: var(--text-primary);
     font-size: 25px;
   }
 
-  .dark-mode {
+  /* .dark-mode {
     background-color: black;
-    color: white;
-  }
+    color: var(--text-primary);
+  } */
+  /*make a handful of colors and force yall to use them*/
 
   /* var element = document.all;
 for(let i = 0; i < element.length; i++){
@@ -79,20 +80,13 @@ element.item(i).classList.toggle("dark-mode");
 }
 
 #navbar {
-    background-color: "#B9B9BA";
+    background-color: var(--background-lightGrey);
     width: 150;
     height: "100vh";
     min-height: "450px";
     /* font-size: "24px";
     line-height: "30px"; */
 }
-
-.dark-mode {
-    background-color: black;
-    color: white;
-  }
-
-
 
 h3 {
     font-family: futura-book, sans-serif;
@@ -106,15 +100,15 @@ h3 {
     padding: 10%;
     margin: 10%;
     border-radius: 2%;
-    background-color: #474C55;
-    color: white;
+    background-color: var(--background-grey);
+    color: var(--text-primary);
 }
 
 #landingCard {
     padding: 10%;
     margin: 10%;
-    background: #474C55;
-    color: white;
+    background-color: var(--background-grey);
+    color: var(--text-primary);
     margin: 5%;
     border-radius: 20px;
 }
@@ -128,22 +122,18 @@ h3 {
 }
 
 #loginCard {
-    background-color: #474C55;
-    color: white;
+    background-color: var(--background-grey);
+    color: var(--text-primary);
     min-width: 600px;
     min-height: 500px;
     margin: 0;
     border-radius: 20px;
 }
 
-#loginCard.dark-mode {
-    background-color: #474C55;
-    color: white;
-  }
 
 #loginCard button {
-    border-color: #F26925;
-    background-color: #F26925;
+    border-color: var(--border-orange);
+    background-color: var(--background-orange);
     max-width: 150px;
     min-height: 40px;
     border-radius: 13px;
@@ -187,7 +177,7 @@ h3 {
 #loginLink,
 #registerLink,
 #logoutLink {
-    color: white;
+    color: var(--text-primary);
     font-size: 38px;
     font-family: 'futura-medium', sans-serif;
     margin-top: 7vh;
@@ -195,7 +185,7 @@ h3 {
 }
 
 #profileLink {
-    color: white;
+    color: var(--text-primary);
     font-size: 38px;
     font-family: 'futura-medium', sans-serif;
     margin-top: 7vh;
@@ -205,7 +195,7 @@ h3 {
 #registerLink:hover,
 #profileLink:hover,
 #logoutLink:hover {
-    background-color: #F26925;
+    background-color: var(--background-orange);
 }
 
 /* POST FEED */
@@ -254,7 +244,7 @@ h3 {
 }
 
 #postColumn {
-    background-color: #474C55;
+    background-color: var(--background);
     padding-top: 2%;
     padding-right: 10%;
     padding-left: 10%;
@@ -270,7 +260,7 @@ h3 {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    background-color: #474C55;
+    background-color: var(--background);
 }
 
 #EditProfile {
@@ -280,19 +270,19 @@ h3 {
     padding: 2rem;
     box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    background-color: #474C55;
+    background-color: var(--background);
 }
 
 #ProfileName {
     text-align: center;
-    color: white;
+    color: var(--text-primary);
     font-family: 'futura-medium', sans-serif;
     font-size: 48px;
     letter-spacing: 0%;
 }
 
 #AboutMe {
-    background-color: white;
+    background-color: var(--text-primary);
     margin-left: -30px;
     margin-right: -30px;
     padding: 15px;
@@ -366,7 +356,7 @@ h3 {
 
 #EditProfile .form_input-group {
     margin-bottom: 1rem;
-    color: white;
+    color: var(--text-primary);
     font-size: 48;
     font-family: 'futura-book', sans-serif;
 }
@@ -379,17 +369,17 @@ h3 {
     border-radius: 4px;
     border: 2px solid #DDDDDD;
     outline: none;
-    background: #EEEEEE;
-    transition: background 0.2s, border-color 0.2s;
+    background-color: #EEEEEE;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 #EditProfile .form_input:focus {
-    border-color: blue;
-    background: white;
+    border-color: var(--order-blue);
+    background-color: var(--text-primary);
 }
 
 #EditProfile .form_link {
-    color: blue;
+    color: var(--text-secondary);
     cursor: pointer;
     text-decoration: none;
     font-size: 20px;
@@ -397,7 +387,7 @@ h3 {
 
 #EditProfile .form_link:hover {
     text-decoration: underline;
-    color: Green;
+    color: var(--text-green);
 }
 
 
@@ -409,10 +399,10 @@ h3 {
 
 #EditProfileButton,
 #UpdateProfile {
-    background-color: #72A4C2;
+    background-color: var(--background-lightBlue);
     border-color: transparent;
     border-radius: 10px;
-    color: white;
+    color: var(--text-primary);
     font-family: futura-book;
 }
 
@@ -424,10 +414,10 @@ h3 {
 #CancelEdits {
     height: 2.5em;
     width: 10em;
-    background-color: #FCB414;
+    background-color: var(--background-yellow);
     border-color: transparent;
     border-radius: 10px;
-    color: white;
+    color: var(--text-primary);
     font-family: futura-book, sans-serif;
 }
 
@@ -479,8 +469,8 @@ h3 {
 }
 
 #reverbButton {
-    color: white;
-    background-color: #F26925;
+    color: var(--text-primary);
+    background-color: var(--background-orange);
     border:none;
     border-radius: 20px;
 }
@@ -490,8 +480,8 @@ h3 {
 }
 
 #feedButtons button {
-    background-color: #F26925;
-    border-color: #F26925;
+    background-color: var(--background-orange);
+    border-color: var(--border-orange);
 }
 
 #feedButtons button img {
@@ -511,8 +501,8 @@ h3 {
 #leaveCommentBtn,
 #submitPostBtn,
 #submitCommentBtn {
-    background-color: #72A4C2;
-    border-color: #72A4C2;
+    background-color:var(--background-lightBlue);
+    border-color: var(--border-lightBlue);
     border-radius: 20px;
     font-family: futura-book, sans-serif;
     font-size: 18px;
