@@ -39,6 +39,25 @@ Page styling regulars:
     text-align: center;
 }
 
+/*Testing Darkula*/
+body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+
+  /* var element = document.all;
+for(let i = 0; i < element.length; i++){
+element.item(i).classList.toggle("dark-mode");
+
+}*/
+
 @font-face {
     font-family: futura-bold, sans-serif;
     src: url('./assets/fonts/Futura-Std-Bold.otf');
@@ -67,6 +86,13 @@ Page styling regulars:
     /* font-size: "24px";
     line-height: "30px"; */
 }
+
+.dark-mode {
+    background-color: black;
+    color: white;
+  }
+
+
 
 h3 {
     font-family: futura-book, sans-serif;
@@ -109,6 +135,11 @@ h3 {
     margin: 0;
     border-radius: 20px;
 }
+
+#loginCard.dark-mode {
+    background-color: #474C55;
+    color: white;
+  }
 
 #loginCard button {
     border-color: #F26925;
