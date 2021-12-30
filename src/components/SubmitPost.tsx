@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import { propTypes } from "react-bootstrap/esm/Image";
 import swal from 'sweetalert';
+import { formatYT } from "../util/youtubeFunctions";
 
 // This function checks the embedURL and returns the appropriate contentType
 function checkEmbed(embedURL: string) {
@@ -16,7 +17,7 @@ function checkEmbed(embedURL: string) {
 
         // If it's a valid file type, we just return that it's an img
         if (expectedFileTypes.get(end) != undefined){
-            return "img";
+            return "IMG";
         }
         else {
             try {
@@ -28,38 +29,27 @@ function checkEmbed(embedURL: string) {
                 let vCode = formatYT(embedURL);
                 
                 // If the videocode isn't null, then it's a valid
-                if (vCode != null) return "vid";
-                else return "invalidURL";
+                if (vCode != null) return "VID";
+                else return null;
             }
             catch {
-                return "invalidURL";
+                return null;
             }
         }
     }
     else {
-        return "nonURL";
+        return null;
     }
     
 }
 
-// Takes a youtube link and returns the YT video code
-function formatYT(ytLink: string)
-{
 
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = ytLink.match(regExp);
-
-    return (match && match[2].length === 11)
-      ? match[2]
-      : null;
-
-}
 
 function SubmitPost(props: any) {
 
     const closeSubmit = () => {
         if (props.post.title != "" && props.post.postText != "") {
-            let cType = checkEmbed(props.post.embedURL);
+            let cType = checkEmbed(props.post.contentLink);
             props.post.contentType = cType;
 
             console.log(cType);
@@ -93,7 +83,7 @@ function SubmitPost(props: any) {
                             <Form.Control
                                 placeholder="Image or Video Embed URL"
                                 onChange={(event) => {
-                                    props.setPost({ ...props.post, embedURL: event.target.value })} 
+                                    props.setPost({ ...props.post, contentLink: event.target.value })} 
                                 }/>
                         </Col>
                     </Form.Group>
