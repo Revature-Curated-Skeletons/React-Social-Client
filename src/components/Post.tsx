@@ -4,6 +4,11 @@ import { Post } from '../models/post'
 import { checkIfPostCanBeLiked, getNumLikes, likePost } from "../remote/reverb-api/likes.api";
 import { Link } from "react-router-dom";
 import ReverbIcon from "../assets/images/reverb_icon_final.png"
+import { formatYT } from "../util/youtubeFunctions";
+
+// Sets time to the local time zone
+
+
 
 const PostComponent = ({ shouldUpdateLikes, post, leaveComment }: 
     { shouldUpdateLikes: boolean[], post: Post, leaveComment: any }) => {
@@ -40,21 +45,27 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
         checkIfPostCanBeLiked(post.id).then(canLikeReturn => setCanLike(!canLikeReturn));
     }, [shouldUpdateLikes]);
 
+    console.log(post.contentLink);
     return (
         <Card id="postCard">
             <Card.Header>
-                <h3>{"" + post.title}</h3>
-                <Card.Subtitle id="cardSubtitle"><Link to={`profile/${post.profile.id}`}>{"" + post.profile.first_name} {"" + post.profile.last_name}</Link></Card.Subtitle>
-                <Card.Text>{"" + post.date}</Card.Text>
+                
+                {/* TODO: Make a link here that calls the API using the author's id to get their profile and then redirect to it*/}
+                {/*<Card.Subtitle id="cardSubtitle"><Link to={`profile/${post.profile.id}`}>{"" + post.profile.first_name} {"" + post.profile.last_name}</Link></Card.Subtitle>*/}
+                <Card.Text>{"" + new Date(post.date + 'Z').toLocaleString() }</Card.Text>
                 <Button data-testid="reverbButton" id="reverbButton" onClick={() => likePostFunc()} variant="warning"
-                    style={{ float: 'right', marginTop: "-5rem" }} disabled={!canLike}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Reverb!"/></Button>
+                    style={{ float: 'right', marginTop: "-2rem" }} disabled={!canLike}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Reverb!"/></Button>
             </Card.Header>
             <Card.Body id="postBody">
-                <Card.Img variant='top' src={"" + post.imageURL} />
-                <Card.Text>
+                {/*Sets the contents of a post. First by setting the embed. */}
+                {console.log(post.contentLink)}
+                {post.contentType == 'VID' && <Card.Img as ='iframe' variant='top' id="postVideo" src={"https://www.youtube.com/embed/" + formatYT(post.contentLink)} frameBorder='0' allowFullScreen/>}
+                {post.contentType == 'IMG' && <Card.Img variant='top' id="postImage" src={"" + post.contentLink} />}
+                <Card.Text style={{ whiteSpace:'pre', maxHeight: '28vh', overflowY:'auto' }} >
                     {post.postText}
                 </Card.Text>
             </Card.Body>
+            {/*
             <ListGroup id="commentBody" className="list-group-flush">
                 {post.comments.map(comment => (
                     <ListGroupItem>
@@ -66,6 +77,7 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
                 ))}
 
             </ListGroup>
+                */}
             <Card.Body>
                 <Button data-testid="submitButton" id="leaveCommentBtn" onClick={() => leaveComment(post.id)}>Leave Comment</Button>
             </Card.Body>

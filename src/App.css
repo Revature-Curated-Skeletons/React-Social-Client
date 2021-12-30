@@ -36,7 +36,7 @@ Page styling regulars:
 */
 
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 /*Testing Darkula*/
@@ -60,23 +60,23 @@ element.item(i).classList.toggle("dark-mode");
 }*/
 
 @font-face {
-    font-family: futura-bold, sans-serif;
-    src: url('./assets/fonts/Futura-Std-Bold.otf');
+  font-family: futura-bold, sans-serif;
+  src: url("./assets/fonts/Futura-Std-Bold.otf");
 }
 
 @font-face {
-    font-family: futura-book, sans-serif;
-    src: url('./assets/fonts/Futura-Std-Book.otf');
+  font-family: futura-book, sans-serif;
+  src: url("./assets/fonts/Futura-Std-Book.otf");
 }
 
 @font-face {
-    font-family: futura-heavy, sans-serif;
-    src: url('./assets/fonts/Futura-Std-Heavy.otf');
+  font-family: futura-heavy, sans-serif;
+  src: url("./assets/fonts/Futura-Std-Heavy.otf");
 }
 
 @font-face {
-    font-family: futura-medium, sans-serif;
-    src: url('./assets/fonts/Futura-Std-Medium.otf');
+  font-family: futura-medium, sans-serif;
+  src: url("./assets/fonts/Futura-Std-Medium.otf");
 }
 
 #navbar {
@@ -89,9 +89,9 @@ element.item(i).classList.toggle("dark-mode");
 }
 
 h3 {
-    font-family: futura-book, sans-serif;
-    font-size: 30px;
-    letter-spacing: 3%;
+  font-family: futura-book, sans-serif;
+  font-size: 30px;
+  letter-spacing: 3%;
 }
 
 /* LANDING */
@@ -116,9 +116,9 @@ h3 {
 /*LOGIN & REGISTRATION*/
 
 #loginDiv {
-    min-width: '600px';
-    min-height: '500px';
-    text-align: center;
+  min-width: "600px";
+  min-height: "500px";
+  text-align: center;
 }
 
 #loginCard {
@@ -142,23 +142,23 @@ h3 {
 }
 
 #loginCard input {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    max-width: 350px;
-    font-size: 18px;
-    border-radius: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  max-width: 350px;
+  font-size: 18px;
+  border-radius: 20px;
 }
 
 #email,
 #password {
-    font-family: 'futura-medium', sans-serif;
-    font-size: 36px;
+  font-family: "futura-medium", sans-serif;
+  font-size: 36px;
 }
 
 .loginRow {
-    margin-right: 150px;
+  margin-right: 150px;
 }
 
 .loginRow h2 {
@@ -169,9 +169,9 @@ h3 {
 }
 
 #cardSubtitle {
-    font-family: futura-book, sans-serif;
-    font-size: 18px;
-    letter-spacing: 3%;
+  font-family: futura-book, sans-serif;
+  font-size: 18px;
+  letter-spacing: 3%;
 }
 
 #loginLink,
@@ -201,46 +201,55 @@ h3 {
 /* POST FEED */
 
 #feedBody {
-    transition-property: all;
-    transition-duration: 3s;
-    transition-timing-function: ease;
+  transition-property: all;
+  transition-duration: 3s;
+  transition-timing-function: ease;
 }
 
 #postBody {
-    font-family: futura-book, sans-serif;
-    font-size: 24px;
-    letter-spacing: 3%;
+  font-family: futura-book, sans-serif;
+  font-size: 18px;
+  letter-spacing: 3%;
+}
+
+#postVideo {
+  height: 50vh;
+  width: 100%;
+}
+
+#postImage {
+  max-width: 100%;
 }
 
 #postCard {
-    text-align: left;
-    margin-top: 50px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin-top: 5vh;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 #commentBody {
-    font-family: futura-book, sans-serif;
-    font-size: 18px;
+  font-family: futura-book, sans-serif;
+  font-size: 18px;
 }
 
 #commentfFooter {
-    font-family: futura-book, sans-serif;
-    font-size: 12px;
+  font-family: futura-book, sans-serif;
+  font-size: 12px;
 }
 
 #reverbIcon {
-    width: 25px;
-    transition-property: all;
-    transition-duration: .5s;
-    transition-timing-function: ease-in-out;
+  width: 25px;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 
 #reverbIcon:hover {
-    transform: translateX(5px);
-    transition-property: all;
-    transition-duration: .5s;
-    transition-timing-function: ease-in-out;
+  transform: translateX(5px);
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 
 #postColumn {
@@ -295,63 +304,63 @@ h3 {
 }
 
 #AboutMe h5 {
-    font-family: futura-medium, sans-serif;
+  font-family: futura-medium, sans-serif;
 }
 
 #HeaderImg {
-    max-height: 350px;
-    max-width: 1000px;
-    position: relative;
-    object-fit:cover;
-    top: 0;
-    left: 0;
-    z-index: 1;
+  max-height: 350px;
+  max-width: 1000px;
+  position: relative;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 #ProfileImg {
-    border: 2px solid #72A4C2;
-    border-radius: 50%;
-    height: 175px;
-    width: 175px;
-    object-fit:cover;
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    z-index: 2;
+  border: 2px solid #72a4c2;
+  border-radius: 50%;
+  height: 175px;
+  width: 175px;
+  object-fit: cover;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  z-index: 2;
 }
 
 #LoadingImg {
-    height: '96px';
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  height: "96px";
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* EDIT PROFILE */
 
 #editCol2 {
-    margin-left: -20px !important;
-    padding-left: 20px !important;
-    border-left: 3px solid #ffff;
+  margin-left: -20px !important;
+  padding-left: 20px !important;
+  border-left: 3px solid #ffff;
 }
 
 #editCol1 {
-    padding-right: 20px !important;
+  padding-right: 20px !important;
 }
 
 #editCol1,
 #editCol2 {
-    margin: 20px;
+  margin: 20px;
 }
 
 #updateProfileBtnCol,
 #cancelProfileBtnCol {
-    text-align: center;
+  text-align: center;
 }
 
 #editButtonsRow {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 #EditProfile .form_input-group {
@@ -390,11 +399,10 @@ h3 {
     color: var(--text-green);
 }
 
-
 /* BUTTONS */
 
-#EditProfileButton{
-    margin-bottom: 30px;
+#EditProfileButton {
+  margin-bottom: 30px;
 }
 
 #EditProfileButton,
@@ -407,8 +415,8 @@ h3 {
 }
 
 #UpdateProfile {
-    width: 10em;
-    height: 2.5em;
+  width: 10em;
+  height: 2.5em;
 }
 
 #CancelEdits {
@@ -430,12 +438,12 @@ h3 {
 #EditProfileButton,
 #UpdateProfile,
 #CancelEdits {
-    transition-property: all;
-    -webkit-transition-property: all;
-    transition-duration: .2s;
-    -webkit-transition-duration: .2s;
-    transition-timing-function: ease;
-    -webkit-transition-timing-function: ease;
+  transition-property: all;
+  -webkit-transition-property: all;
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
 }
 
 #postBtn:hover,
@@ -447,25 +455,25 @@ h3 {
 #EditProfileButton:hover,
 #UpdateProfile:hover,
 #CancelEdits:hover {
-    transition-property: all;
-    -webkit-transition-property: all;
-    transition-duration: .2s;
-    -webkit-transition-duration: .2s;
-    transition-timing-function: ease;
-    -webkit-transition-timing-function: ease;
-    font-weight: bold;
-    transform: scale(1.05);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  transition-property: all;
+  -webkit-transition-property: all;
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  font-weight: bold;
+  transform: scale(1.05);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 #homeLink:hover {
-    transition-property: all;
-    -webkit-transition-property: all;
-    transition-duration: .2s;
-    -webkit-transition-duration: .2s;
-    transition-timing-function: ease;
-    -webkit-transition-timing-function: ease;
-    transform: scale(1.03);
+  transition-property: all;
+  -webkit-transition-property: all;
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  transform: scale(1.03);
 }
 
 #reverbButton {
@@ -476,7 +484,7 @@ h3 {
 }
 
 #feedButtons {
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
 
 #feedButtons button {
@@ -485,15 +493,15 @@ h3 {
 }
 
 #feedButtons button img {
-    height: 20px;
+  height: 20px;
 }
 
 #postBtn {
-    float: left;
+  float: left;
 }
 
 #refreshBtn {
-    float: right;
+  float: right;
 }
 
 #postBtn,
@@ -507,3 +515,4 @@ h3 {
     font-family: futura-book, sans-serif;
     font-size: 18px;
 }
+

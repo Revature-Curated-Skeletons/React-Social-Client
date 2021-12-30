@@ -16,7 +16,7 @@ describe('SubmitPost testing', () => {
       id: 0,
       title: "title",
       postText: "text",
-      imageURL: "",
+      embedURL: "",
       date: "",
       profile: {
         id: 0,
