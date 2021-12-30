@@ -7,7 +7,7 @@ export interface Post {
     postText: string,
     contentLink: string,
     contentType: string,
-    date: string,
+    date: Date | null,
     comments: Comment[]
 }
 
@@ -17,6 +17,6 @@ export const initialPost: Post = {
     postText: "",
     contentLink: "",
     contentType:"",
-    date: "",
+    date: null,
     comments: []
 }

@@ -52,7 +52,6 @@ function SubmitPost(props: any) {
             let cType = checkEmbed(props.post.contentLink);
             props.post.contentType = cType;
 
-            console.log(cType);
 
             props.onHide();
             props.dispatchPost();

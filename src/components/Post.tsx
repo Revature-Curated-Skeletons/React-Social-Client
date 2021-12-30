@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import ReverbIcon from "../assets/images/reverb_icon_final.png"
 import { formatYT } from "../util/youtubeFunctions";
 
+// Sets time to the local time zone
+
+
+
 const PostComponent = ({ shouldUpdateLikes, post, leaveComment }: 
     { shouldUpdateLikes: boolean[], post: Post, leaveComment: any }) => {
 
@@ -48,7 +52,7 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
                 
                 {/* TODO: Make a link here that calls the API using the author's id to get their profile and then redirect to it*/}
                 {/*<Card.Subtitle id="cardSubtitle"><Link to={`profile/${post.profile.id}`}>{"" + post.profile.first_name} {"" + post.profile.last_name}</Link></Card.Subtitle>*/}
-                <Card.Text>{"" + post.date}</Card.Text>
+                <Card.Text>{"" + new Date(post.date + 'Z').toLocaleString() }</Card.Text>
                 <Button data-testid="reverbButton" id="reverbButton" onClick={() => likePostFunc()} variant="warning"
                     style={{ float: 'right', marginTop: "-2rem" }} disabled={!canLike}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Reverb!"/></Button>
             </Card.Header>
