@@ -48,7 +48,7 @@ function checkEmbed(embedURL: string) {
 function SubmitPost(props: any) {
 
     const closeSubmit = () => {
-        if (props.post.title != "" && props.post.postText != "") {
+        if (props.post.postText != "") {
             let cType = checkEmbed(props.post.contentLink);
             props.post.contentType = cType;
 
@@ -56,7 +56,7 @@ function SubmitPost(props: any) {
             props.onHide();
             props.dispatchPost();
         } else {
-            swal("", "Posts must have a title and body!", "error");
+            swal("", "Posts must have a body!", "error");
         }
     }
 
@@ -87,25 +87,19 @@ function SubmitPost(props: any) {
                         </Col>
                     </Form.Group>
 
-                    {/* Title Input */}
-                    <Form.Group as={Row} className="mb-3">
-                        <Col sm={11}>
-                            <Form.Control
-                                placeholder="Post Title"
-                                style={{ height: "25px" }}
-                                onChange={(event) => props.setPost({ ...props.post, title: event.target.value })}
-                            />
-                        </Col>
-                    </Form.Group>
-
                     {/* Text Input */}
                     <Form.Group as={Row} className="mb-3">
                         <Col sm={12}>
                             <Form.Control
                                 as="textarea"
                                 placeholder="Post"
-                                style={{ height: "100px" }}
-                                onChange={(event) => props.setPost({ ...props.post, postText: event.target.value })}
+                                style={{ height: "100px"}}
+                                maxLength={1000}
+                                onChange={(event) => {
+                                    props.setPost({ ...props.post, postText: event.target.value })
+                                    
+                                }
+                            }
                             />
                         </Col>
                     </Form.Group>

@@ -57,7 +57,7 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
                     style={{ float: 'right', marginTop: "-2rem" }} disabled={!canLike}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Reverb!"/></Button>
             </Card.Header>
             <Card.Body id="postBody">
-                {/*Sets the contents of a post. First by setting the embed.*/}
+                {/*Sets the contents of a post. First by setting the embed. */}
                 {console.log(post.contentLink)}
                 {post.contentType == 'VID' && <Card.Img as ='iframe' variant='top' id="postVideo" src={"https://www.youtube.com/embed/" + formatYT(post.contentLink)} frameBorder='0' allowFullScreen/>}
                 {post.contentType == 'IMG' && <Card.Img variant='top' src={"" + post.contentLink} />}
