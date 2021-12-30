@@ -162,7 +162,7 @@ h3 {
 }
 
 .loginRow h2 {
-    color: #474C55;
+    color: var(--text-primary);
     font-family: 'futura-medium', sans-serif;
     font-size: 48px;
     margin-bottom: 20px;
