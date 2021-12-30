@@ -60,8 +60,8 @@ const PostComponent = ({ shouldUpdateLikes, post, leaveComment }:
                 {/*Sets the contents of a post. First by setting the embed. */}
                 {console.log(post.contentLink)}
                 {post.contentType == 'VID' && <Card.Img as ='iframe' variant='top' id="postVideo" src={"https://www.youtube.com/embed/" + formatYT(post.contentLink)} frameBorder='0' allowFullScreen/>}
-                {post.contentType == 'IMG' && <Card.Img variant='top' src={"" + post.contentLink} />}
-                <Card.Text>
+                {post.contentType == 'IMG' && <Card.Img variant='top' id="postImage" src={"" + post.contentLink} />}
+                <Card.Text style={{ whiteSpace:'pre', maxHeight: '28vh', overflowY:'auto' }} >
                     {post.postText}
                 </Card.Text>
             </Card.Body>

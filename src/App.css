@@ -187,13 +187,17 @@ h3 {
 
 #postBody {
   font-family: futura-book, sans-serif;
-  font-size: 24px;
+  font-size: 18px;
   letter-spacing: 3%;
 }
 
 #postVideo {
   height: 50vh;
   width: 100%;
+}
+
+#postImage {
+  max-width: 100%;
 }
 
 #postCard {
