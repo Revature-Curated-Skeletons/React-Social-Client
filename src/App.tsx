@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Stack } from 'react-bootstrap';
 import MainRouter from './router/MainRouter';
-import Navbar from './components/Navbar';
+import Navbar from './features/navbar/Navbar';
 import { useAppSelector } from './app/hooks';
 
 
