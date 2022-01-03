@@ -58,7 +58,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
                             className="d-inline-block align-top"
                         />
                     </Nav.Link>
-                    <button style={{verticalAlign: "bottom"}} onClick={() => switchTheme()}>🌞/🌜</button>
+
+
+                    <button id="theme_button" onClick={() => switchTheme()}>🌞/🌜</button>
+
+
                     <ul className="nav flex-column mb-auto text-center" id="testingNav" style={{ color: "#FFFFF", fontSize: "38" }}>
 
                         {/* The link to the Login page. */}
@@ -104,7 +108,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
                             className="d-inline-block align-top"
                         />
                     </Nav.Link>
-                    <button style={{verticalAlign: "bottom"}} onClick={() => switchTheme()}>🌞/🌜</button>
+
+
+                    <button id="theme_button" onClick={() => switchTheme()}>🌞/🌜</button>
+
+
                     <ul className="nav flex-column mb-auto text-center">
 
                         {/* The link to the profile page */}
