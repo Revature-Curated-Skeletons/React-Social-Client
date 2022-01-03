@@ -41,19 +41,19 @@ Page styling regulars:
 
 /*Testing Darkula*/
 body {
-    padding: 25px;
-    background-color: var(--background);
-    color: var(--text-primary);
-    font-size: 25px;
-  }
+  padding: 25px;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-size: 25px;
+}
 
-  /* .dark-mode {
+/* .dark-mode {
     background-color: black;
     color: var(--text-primary);
   } */
-  /*make a handful of colors and force yall to use them*/
+/*make a handful of colors and force yall to use them*/
 
-  /* var element = document.all;
+/* var element = document.all;
 for(let i = 0; i < element.length; i++){
 element.item(i).classList.toggle("dark-mode");
 
@@ -80,11 +80,11 @@ element.item(i).classList.toggle("dark-mode");
 }
 
 #navbar {
-    background-color: var(--background-lightGrey);
-    width: 150;
-    height: "100vh";
-    min-height: "450px";
-    /* font-size: "24px";
+  background-color: var(--background-lightGrey);
+  width: 150;
+  height: "100vh";
+  min-height: "450px";
+  /* font-size: "24px";
     line-height: "30px"; */
 }
 
@@ -97,20 +97,20 @@ h3 {
 /* LANDING */
 
 #landingCard {
-    padding: 10%;
-    margin: 10%;
-    border-radius: 2%;
-    background-color: var(--background-grey);
-    color: var(--text-primary);
+  padding: 10%;
+  margin: 10%;
+  border-radius: 2%;
+  background-color: var(--background-grey);
+  color: var(--text-primary);
 }
 
 #landingCard {
-    padding: 10%;
-    margin: 10%;
-    background-color: var(--background-grey);
-    color: var(--text-primary);
-    margin: 5%;
-    border-radius: 20px;
+  padding: 10%;
+  margin: 10%;
+  background-color: var(--background-grey);
+  color: var(--text-primary);
+  margin: 5%;
+  border-radius: 20px;
 }
 
 /*LOGIN & REGISTRATION*/
@@ -122,23 +122,22 @@ h3 {
 }
 
 #loginCard {
-    background-color: var(--background-grey);
-    color: var(--text-primary);
-    min-width: 600px;
-    min-height: 500px;
-    margin: 0;
-    border-radius: 20px;
+  background-color: var(--background-grey);
+  color: var(--text-primary);
+  min-width: 600px;
+  min-height: 500px;
+  margin: 0;
+  border-radius: 20px;
 }
 
-
 #loginCard button {
-    border-color: var(--border-orange);
-    background-color: var(--background-orange);
-    max-width: 150px;
-    min-height: 40px;
-    border-radius: 13px;
-    font-family: futura-book, sans-serif;
-    font-size: 30px;
+  border-color: var(--border-orange);
+  background-color: var(--background-orange);
+  max-width: 150px;
+  min-height: 40px;
+  border-radius: 13px;
+  font-family: futura-book, sans-serif;
+  font-size: 30px;
 }
 
 #loginCard input {
@@ -162,10 +161,10 @@ h3 {
 }
 
 .loginRow h2 {
-    color: var(--text-primary);
-    font-family: 'futura-medium', sans-serif;
-    font-size: 48px;
-    margin-bottom: 20px;
+  color: var(--text-primary);
+  font-family: "futura-medium", sans-serif;
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
 #cardSubtitle {
@@ -177,25 +176,25 @@ h3 {
 #loginLink,
 #registerLink,
 #logoutLink {
-    color: var(--text-primary);
-    font-size: 38px;
-    font-family: 'futura-medium', sans-serif;
-    margin-top: 7vh;
-    padding-bottom: 15px;
+  color: var(--text-white);
+  font-size: 38px;
+  font-family: "futura-medium", sans-serif;
+  margin-top: 7vh;
+  padding-bottom: 15px;
 }
 
 #profileLink {
-    color: var(--text-primary);
-    font-size: 38px;
-    font-family: 'futura-medium', sans-serif;
-    margin-top: 7vh;
+  color: var(--text-white);
+  font-size: 38px;
+  font-family: "futura-medium", sans-serif;
+  margin-top: 7vh;
 }
 
 #loginLink:hover,
 #registerLink:hover,
 #profileLink:hover,
 #logoutLink:hover {
-    background-color: var(--background-orange);
+  background-color: var(--background-orange);
 }
 
 /* POST FEED */
@@ -253,54 +252,54 @@ h3 {
 }
 
 #postColumn {
-    background-color: var(--background);
-    padding-top: 2%;
-    padding-right: 10%;
-    padding-left: 10%;
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+  background-color: var(--background-grey);
+  padding-top: 2%;
+  padding-right: 10%;
+  padding-left: 10%;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* PROFILE */
 
 #ProfilePage {
-    width: 1000px;
-    height: 900px;
-    margin: 1rem;
-    padding: 2rem;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    background-color: var(--background);
+  width: 1000px;
+  height: 900px;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background-color: var(--background);
 }
 
 #EditProfile {
-    width: 1000px;
-    max-width: 1000px;
-    margin: 1rem;
-    padding: 2rem;
-    box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    background-color: var(--background);
+  width: 1000px;
+  max-width: 1000px;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background-color: var(--background);
 }
 
 #ProfileName {
-    text-align: center;
-    color: var(--text-primary);
-    font-family: 'futura-medium', sans-serif;
-    font-size: 48px;
-    letter-spacing: 0%;
+  text-align: center;
+  color: var(--text-primary);
+  font-family: "futura-medium", sans-serif;
+  font-size: 48px;
+  letter-spacing: 0%;
 }
 
 #AboutMe {
-    background-color: var(--text-primary);
-    margin-left: -30px;
-    margin-right: -30px;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: justify;
-    text-indent: 5px;
-    font-family: futura-book, sans-serif;
-    font-size: 12;
-    letter-spacing: 3%;
+  background-color: var(--text-primary);
+  margin-left: -30px;
+  margin-right: -30px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: justify;
+  text-indent: 5px;
+  font-family: futura-book, sans-serif;
+  font-size: 12;
+  letter-spacing: 3%;
 }
 
 #AboutMe h5 {
@@ -364,39 +363,39 @@ h3 {
 }
 
 #EditProfile .form_input-group {
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-size: 48;
-    font-family: 'futura-book', sans-serif;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 48;
+  font-family: "futura-book", sans-serif;
 }
 
 #EditProfile .form_input {
-    display: block;
-    width: 100%;
-    padding: 0.7rem;
-    box-sizing: border-box;
-    border-radius: 4px;
-    border: 2px solid #DDDDDD;
-    outline: none;
-    background-color: #EEEEEE;
-    transition: background-color 0.2s, border-color 0.2s;
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 2px solid #dddddd;
+  outline: none;
+  background-color: #eeeeee;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 #EditProfile .form_input:focus {
-    border-color: var(--order-blue);
-    background-color: var(--text-primary);
+  border-color: var(--order-blue);
+  background-color: var(--text-primary);
 }
 
 #EditProfile .form_link {
-    color: var(--text-secondary);
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 20px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 #EditProfile .form_link:hover {
-    text-decoration: underline;
-    color: var(--text-green);
+  text-decoration: underline;
+  color: var(--text-green);
 }
 
 /* BUTTONS */
@@ -407,11 +406,11 @@ h3 {
 
 #EditProfileButton,
 #UpdateProfile {
-    background-color: var(--background-lightBlue);
-    border-color: transparent;
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-family: futura-book;
+  background-color: var(--background-lightBlue);
+  border-color: transparent;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: futura-book;
 }
 
 #UpdateProfile {
@@ -420,13 +419,13 @@ h3 {
 }
 
 #CancelEdits {
-    height: 2.5em;
-    width: 10em;
-    background-color: var(--background-yellow);
-    border-color: transparent;
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-family: futura-book, sans-serif;
+  height: 2.5em;
+  width: 10em;
+  background-color: var(--background-yellow);
+  border-color: transparent;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: futura-book, sans-serif;
 }
 
 #postBtn,
@@ -477,10 +476,10 @@ h3 {
 }
 
 #reverbButton {
-    color: var(--text-primary);
-    background-color: var(--background-orange);
-    border:none;
-    border-radius: 20px;
+  color: var(--text-primary);
+  background-color: var(--background-orange);
+  border: none;
+  border-radius: 20px;
 }
 
 #feedButtons {
@@ -488,8 +487,8 @@ h3 {
 }
 
 #feedButtons button {
-    background-color: var(--background-orange);
-    border-color: var(--border-orange);
+  background-color: var(--background-orange);
+  border-color: var(--border-orange);
 }
 
 #feedButtons button img {
@@ -509,10 +508,9 @@ h3 {
 #leaveCommentBtn,
 #submitPostBtn,
 #submitCommentBtn {
-    background-color:var(--background-lightBlue);
-    border-color: var(--border-lightBlue);
-    border-radius: 20px;
-    font-family: futura-book, sans-serif;
-    font-size: 18px;
+  background-color: var(--background-lightBlue);
+  border-color: var(--border-lightBlue);
+  border-radius: 20px;
+  font-family: futura-book, sans-serif;
+  font-size: 18px;
 }
-
