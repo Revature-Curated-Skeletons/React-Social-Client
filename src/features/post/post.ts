@@ -8,7 +8,8 @@ export interface Post {
     contentLink: string,
     contentType: string,
     date: Date | null,
-    comments: Comment[]
+    comments: Comment[],
+    authorID: string
 }
 
 export const initialPost: Post = {
@@ -18,5 +19,6 @@ export const initialPost: Post = {
     contentLink: "",
     contentType:"",
     date: null,
-    comments: []
+    comments: [],
+    authorID: ""
 }

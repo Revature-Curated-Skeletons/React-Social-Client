@@ -7,7 +7,7 @@ import { store } from "../../app/store";
 export type ProfileState = Profile;
 
 const initialState: ProfileState = {
-    id: 0,
+    id: "",
     first_name: "",
     last_name: "",
     birthday: "",
