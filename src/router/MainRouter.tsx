@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Feed from "../pages/Feed";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Landing from "../pages/Landing";
+import Feed from "../features/feed/Feed";
+import Login from "../features/login/Login";
+import Register from "../features/register/Register";
+import Landing from "../features/landing/Landing";
 import { useAppDispatch } from "../app/hooks";
-import { logout } from '../slices/authSlice'
-import ProfilePage from "../pages/ProfilePage";
-import EditProfilePage from "../pages/EditProfilePage";
+import { logout } from '../features/login/authSlice'
+import ProfilePage from "../features/profile/ProfilePage";
+import EditProfilePage from "../features/profile/EditProfilePage";
 
 
 interface MainRouterProps{
