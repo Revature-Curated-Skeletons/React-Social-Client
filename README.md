@@ -48,7 +48,7 @@ Reverb (styled as ReverB) is an upcoming social media app designed for Revature 
 * * mvn spring-boot:run
 * Install frontend dependencies using the command:
 * * npm install --legacy-peer-deps
-* Connect to localhost:3000 to view the webapp.
+* Connect to Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com to view the webapp.
 
 ## Usage
 

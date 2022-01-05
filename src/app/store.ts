@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import authReducer from '../slices/authSlice';
-import postsReducer from '../slices/postSlice';
-import profileReducer from '../slices/profileSlice';
+import authReducer from '../features/login/authSlice';
+import postsReducer from '../features/post/postSlice';
+import profileReducer from '../features/profile/profileSlice';
 
 
 
