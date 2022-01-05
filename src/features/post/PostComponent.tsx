@@ -18,6 +18,7 @@ const PostComponent =  ({ shouldUpdateLikes, post, leaveComment }:
     const [canLike, setCanLike] = React.useState(false);
     const [likes, setLikes] = React.useState(initialLikes);
     const [authorProfile, setAuthorProfile] = React.useState(initialProfile);
+    const [commentAuthor, setCommentAuthor] = React.useState(initialProfile);
 
     const updateLikes = () => {
         // console.log("Calling backend to update likes on post " + post.id);
@@ -27,11 +28,7 @@ const PostComponent =  ({ shouldUpdateLikes, post, leaveComment }:
             );
     }
 
-    const getPostAuthor = () => {
-        getProfileByAuthor(post.authorID).then(function (data) {
-            setAuthorProfile(data);
-        }); 
-    }
+    
 
     const likePostFunc = () => {
         if (canLike)
@@ -60,6 +57,26 @@ const PostComponent =  ({ shouldUpdateLikes, post, leaveComment }:
         
     }
 
+    const getPostAuthor = () => {
+        getProfileByAuthor(post.authorID).then(function (data) {
+            setAuthorProfile(data);
+        }); 
+    }
+
+    function getCommentAuthor(cAuthId: string){
+        const getcAuth = () => {
+                getProfileByAuthor(cAuthId).then(function(data) {
+                setCommentAuthor(data);
+            });
+        }
+
+        getcAuth();
+    
+    }
+
+
+    
+
     //checks to see if the post can be liked
     //updates the number of likes
     
@@ -86,9 +103,9 @@ const PostComponent =  ({ shouldUpdateLikes, post, leaveComment }:
         <Card id="postCard">
             <Card.Header>
                 {/* Link to the poster's profile in Reverb*/}
-                <Card.Subtitle id="cardSubtitle"><Link to={`profile/${authorProfile.id}`}>{"" + authorProfile.first_name} {"" + authorProfile.last_name}</Link></Card.Subtitle>
+                <Card.Subtitle id="postAuthor"><Link to={`profile/${authorProfile.id}`}>{"" + authorProfile.first_name} {"" + authorProfile.last_name}</Link></Card.Subtitle>
                 {/*Date that the post was made.*/}
-                <Card.Text>{"" + new Date(post.date + 'Z').toLocaleString() }</Card.Text>
+                <Card.Text id = "postTime">{"" + new Date(post.date + 'Z').toLocaleString() }</Card.Text>
                 {/*To like the post*/}
                 <Button data-testid="reverbButton" id="reverbButton" onClick={() => likePostFunc()} variant="warning"
                     style={{ float: 'right', marginTop: "-2rem" }}>{likes}<img id="reverbIcon" src={ReverbIcon} alt="Click to Like!"/></Button>
@@ -101,19 +118,24 @@ const PostComponent =  ({ shouldUpdateLikes, post, leaveComment }:
                     {post.postText}
                 </Card.Text>
             </Card.Body>
-            {/*
-            <ListGroup id="commentBody" className="list-group-flush">
-                {post.comments.map(comment => (
-                    <ListGroupItem>
+            
+            <ListGroup id="commentBody" className="list-group-flush" >
+                
+                {post.comments.map((comment, idx) => {
+
+                    return (
+                    <ListGroupItem key={idx}>
                         {comment.commentText}
                         <footer id="commentFooter" style={{ float: "right", fontSize: "0.8rem", marginTop: "0.8rem" }}>
-                            <Link to={`profile/${comment.profile.id}`}>{comment.profile.first_name} {comment.profile.last_name}</Link> | {comment.date}
+                             <Link to={`profile/${comment.author?.pfId}`}>{comment.author?.firstname} {comment.author?.lastname}</Link> | {new Date(comment.date + 'Z').toLocaleString()}
+                             
                         </footer>
                     </ListGroupItem>
-                ))}
+                )
+                })}
 
             </ListGroup>
-                */}
+                
                 
             <Card.Body>
                 <Button data-testid="submitButton" id="leaveCommentBtn" onClick={() => leaveComment(post.id)}>Leave Comment</Button>
