@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './styling/App.css';
 import { Stack } from 'react-bootstrap';
 import MainRouter from './router/MainRouter';
 import Navbar from './features/navbar/Navbar';

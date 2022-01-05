@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 import {Nav, NavLink } from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
-import Logo from '../assets/images/reverb_logo_final_light.png'
+import Logo from '../../assets/images/reverb_logo_final_light.png'
 import { Link, useHistory } from 'react-router-dom'
-import '../styling/navbar.css';
+import './navbar.css';
 
 // The props that are allowed to be passed to this.
 interface NavigationBarProps {

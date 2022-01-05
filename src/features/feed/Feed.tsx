@@ -8,7 +8,7 @@ import SubmitComment from '../comment/SubmitComment';
 import { createComment } from '../comment/comment.api';
 import { initialPost } from '../post/post';
 import { initialComment } from '../comment/comment';
-import RefreshIcon from '../assets/images/refreshicon.svg'
+import RefreshIcon from '../../assets/images/refreshicon.svg'
 
 export let util = {
   updateAll: () => { },

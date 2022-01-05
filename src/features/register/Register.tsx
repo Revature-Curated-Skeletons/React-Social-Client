@@ -16,8 +16,9 @@ export default function Register() {
   // Registering user into backend database
   const registerUser = (token: string) => {
 
-  const url = 'http://Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com/api/user/register';
-    
+  // const url = 'http://Reverbapiapplication-env.eba-qjeevjhg.us-west-1.elasticbeanstalk.com/api/user/register';
+  const url = 'http://localhost:5000/api/user/register';
+
     const header = {
       'Authorization': token,
       'Content-Type': 'application/json'

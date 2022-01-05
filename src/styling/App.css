@@ -61,22 +61,22 @@ element.item(i).classList.toggle("dark-mode");
 
 @font-face {
   font-family: futura-bold, sans-serif;
-  src: url("./assets/fonts/Futura-Std-Bold.otf");
+  src: url("../assets/fonts/Futura-Std-Bold.otf");
 }
 
 @font-face {
   font-family: futura-book, sans-serif;
-  src: url("./assets/fonts/Futura-Std-Book.otf");
+  src: url("../assets/fonts/Futura-Std-Book.otf");
 }
 
 @font-face {
   font-family: futura-heavy, sans-serif;
-  src: url("./assets/fonts/Futura-Std-Heavy.otf");
+  src: url("../assets/fonts/Futura-Std-Heavy.otf");
 }
 
 @font-face {
   font-family: futura-medium, sans-serif;
-  src: url("./assets/fonts/Futura-Std-Medium.otf");
+  src: url("../assets/fonts/Futura-Std-Medium.otf");
 }
 
 #navbar {
