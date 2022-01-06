@@ -553,3 +553,12 @@ h3 {
   color: var(--text-primary)
 }
 
+
+.swal-modal{
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.swal-text{
+  color: var(--text-primary);
+}
