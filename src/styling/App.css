@@ -63,6 +63,8 @@ element.item(i).classList.toggle("dark-mode");
   background-color: var(--background-grey);
   color: var(--text-white);
   border: hidden;
+  width: 7.5vw;
+  align-self: center;
 }
 
 @font-face {
