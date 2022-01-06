@@ -571,3 +571,7 @@ h3 {
 .swal-text{
   color: var(--text-primary);
 }
+
+.swal-title{
+  color: var(--text-white);
+}
