@@ -32,6 +32,7 @@ code {
   --border-white: white;
   --border-lightBlue: #72a4c2;
 }
+
 [data-theme="dark"] {
   --background: #202225;
   --background-orange: #f26925;
