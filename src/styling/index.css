@@ -18,7 +18,9 @@ code {
   --background-yellow: #fcb414;
   --background-lightBlue: #72a4c2;
   --background-grey: #474c55;
-  --background-lightGrey: #b9b9ba;
+  --background-profile: white;
+  --background-lightGrey: #f2f3f5;
+  --background-darkGrey: #e3e5e8;
   --text-primary: black;
   --text-secondary: royalblue;
   --text-green: Green;
@@ -31,13 +33,15 @@ code {
   --border-lightBlue: #72a4c2;
 }
 [data-theme="dark"] {
-  --background: black;
+  --background: #202225;
   --background-orange: #f26925;
   --background-yellow: #cf8f03;
   --background-lightBlue: #8eafc4;
   --background-lightGrey: #b9b9ba;
+  --background-darkGrey: #2f3136;
   --background-grey: #474c55;
-  --text-primary: white;
+  --background-profile: #474c55;
+  --text-primary: #dbd7d1;
   --text-secondary: Grey;
   --text-green: Green;
   --text-white: White;

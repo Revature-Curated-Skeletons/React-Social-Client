@@ -71,12 +71,14 @@ export default function ProfileInformation(props: any) {
             <br />
             <Card.Body id="profileBody">
                 <Card.Title id = "ProfileName">{profile.first_name} {profile.last_name}</Card.Title>
+                {/*
                 <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
                 <br></br>
                 <text>followers: </text>
                 <br></br>
                 <text>following: </text>
                 <br /><br />
+                */}
                 <Card.Text id="AboutMe">
                     <h5>About Me</h5>
                     {profile.about_me}
