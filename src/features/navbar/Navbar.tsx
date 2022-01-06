@@ -11,6 +11,14 @@ interface NavigationBarProps {
     loggedIn: string
 }
 
+function switchTheme() {
+    let current = document.documentElement.getAttribute("data-theme")
+    if(current == "light"){
+        document.documentElement.setAttribute("data-theme", "dark")
+    }else{
+        document.documentElement.setAttribute("data-theme", "light")
+    }
+}
 
 // The function component typed as well as its props defined and typed
 // through destructuring.
@@ -50,6 +58,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
                             className="d-inline-block align-top"
                         />
                     </Nav.Link>
+
+
+                    <button id="theme_button" onClick={() => switchTheme()}>🌞/🌜</button>
+
+
                     <ul className="nav flex-column mb-auto text-center" id="testingNav" style={{ color: "#FFFFF", fontSize: "38" }}>
 
                         {/* The link to the Login page. */}
@@ -63,7 +76,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
                         <Nav.Link as={Link} to={"/register"} id="registerLink" onClick={() => history.push("/register")} eventKey="register-link">
                             Register
                         </Nav.Link>
-
                     </ul>
                 </Nav>
             </Navbar>
@@ -96,6 +108,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
                             className="d-inline-block align-top"
                         />
                     </Nav.Link>
+
+
+                    <button id="theme_button" onClick={() => switchTheme()}>🌞/🌜</button>
+
+
                     <ul className="nav flex-column mb-auto text-center">
 
                         {/* The link to the profile page */}
