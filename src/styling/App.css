@@ -199,6 +199,12 @@ h3 {
 
 /* POST FEED */
 
+#postAuthor {
+  font-family: futura-book, sans-serif;
+  font-size: 18px;
+  letter-spacing: 3%;
+}
+
 #feedBody {
   transition-property: all;
   transition-duration: 3s;
