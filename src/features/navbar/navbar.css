@@ -1,8 +1,9 @@
 .navbar{
-    background-color:"#B9B9BA";
+    background-color:var(--background-grey);
     width: 150; 
     height:"100vh";
     min-height:"450px";
     font-size:"24px";
     line-height:"30px";
+    color: var(--text-primary)
   }
