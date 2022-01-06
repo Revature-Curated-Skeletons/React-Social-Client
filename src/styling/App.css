@@ -239,11 +239,15 @@ h3 {
   margin-top: 5vh;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  background: var(--background);
+  color: var(--text-primary);
 }
 
 #commentBody {
   font-family: futura-book, sans-serif;
   font-size: 18px;
+  background: var(--background);
+  color: var(--text-primary);
 }
 
 #commentfFooter {
@@ -530,3 +534,22 @@ h3 {
   font-family: futura-book, sans-serif;
   font-size: 18px;
 }
+
+.form-control,
+.modal-body,
+.modal-content{
+  background: var(--background-profile);
+  color: var(--text-primary);
+}
+
+.form-control:focus
+{
+  color: var(--text-primary);
+  background: var(--background-profile);
+}
+
+.list-group-item{
+  background: var(--background);
+  color: var(--text-primary)
+}
+
