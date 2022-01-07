@@ -203,6 +203,22 @@ h3 {
   background-color: var(--background-orange);
 }
 
+/* SEARCH */
+.search-container {
+  position: relative;
+  z-index: 999;
+  width: 80%;
+  left: 20%;
+}
+
+.results-list {
+  position: absolute;
+  width: 100%;
+  background-color: var(--background);
+  z-index: 999;
+  box-shadow: 2px 2px 8px#000000;
+}
+
 /* POST FEED */
 
 #postAuthor {

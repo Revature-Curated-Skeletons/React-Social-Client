@@ -35,7 +35,7 @@ function SearchBar() {
         );
         console.log(results)
         if (results.length) {
-          return (<ResultsList results={results} />);
+          return (<ResultsList results={results.slice(0, 8)} />);
         }
       }
       const items = "users";
@@ -44,7 +44,7 @@ function SearchBar() {
   }
 
   return (
-    <>
+    <div className='search-container'>
       <InputGroup className="mb-3">
         <FormControl
           placeholder="Search for Users"
@@ -55,7 +55,7 @@ function SearchBar() {
         />
       </InputGroup>
       {renderSearchResults()}
-    </>
+    </div>
   )
 }
 

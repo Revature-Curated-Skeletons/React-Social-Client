@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
 import SearchResult from './SearchResult';
 import { Profile } from '../profile/profile';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -31,11 +32,21 @@ export default function Result({ user }: any) {
     getProfileId();
   }, []);
 
+  function handleClick() {
+    followUser();
+  }
+
+  async function followUser() {
+    const resp = await reverbClientWithAuth.put(`/api/user/follow-user/${user?.id}`)
+    console.log(resp)
+  }
 
   return (
     <>
       <img src={profile?.profile_img} height='48' width='48'/>
-      <NavLink to={"/profile/" + profile?.id} key={profile?.id}>{user.email} {profile?.first_name}</NavLink><br key={initialResult.id + "1"}/>
+      <NavLink to={"/profile/" + profile?.id} key={profile?.id}>{user.email} {profile?.first_name}</NavLink>
+      <Button id="follow_button" onClick={handleClick}>FOLLOW</Button>
+      <br key={initialResult.id + "1"}/>
     </>
   )
 }
