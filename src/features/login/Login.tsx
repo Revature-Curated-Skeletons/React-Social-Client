@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useAppDispatch } from '../../app/hooks'
 import { setTokenAsync } from './authSlice'
 import { reverbClientWithAuth } from '../../remote/reverb-api/reverbClient'
+import SearchBar from '../search/SearchBar'
 
 export let util = {loginAccount: (event: any) => {}};
 
@@ -38,6 +39,7 @@ export default function Login() {
     >
       <Row className="loginRow">
         <Col>
+          <SearchBar />
           <h2>Login</h2>
           <div id="loginDiv" className="d-flex">
             <Card id="loginCard">

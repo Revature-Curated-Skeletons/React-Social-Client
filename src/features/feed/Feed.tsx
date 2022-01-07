@@ -9,6 +9,7 @@ import { createComment } from '../comment/comment.api';
 import { initialPost } from '../post/post';
 import { initialComment } from '../comment/comment';
 import RefreshIcon from '../../assets/images/refreshicon.svg'
+import SearchBar from '../search/SearchBar';
 
 export let util = {
   updateAll: () => { },
@@ -61,6 +62,7 @@ const Feed = () => {
 
   return (
     <Container id="feedBody">
+      <SearchBar />
       <Row>
         <Col id="postColumn" xs={{span: 8, offset: 2}}>
           <div id="feedButtons"> 
