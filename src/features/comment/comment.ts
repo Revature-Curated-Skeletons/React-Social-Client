@@ -1,13 +1,16 @@
-import { Profile } from "../profile/profile";
+import { Author } from "./author";
+
 
 export interface Comment {
-    commentId: number,
+    commentId: string,
     commentText: string,
-    date: string
+    date: Date | null,
+    author: Author  | null
 }
 
 export const initialComment: Comment = {
-    commentId: 0,
+    commentId: "",
     commentText: "",
-    date: ""
+    date: null,
+    author: null
 }

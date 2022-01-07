@@ -5,7 +5,7 @@
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    background: #ffffff;
+    background: var(--background-grey);
 }
 
 .container,
@@ -17,7 +17,7 @@
 
 .form_input-group {
     margin-bottom: 1rem;
-    color:black;
+    color:var(--text-primary);
 }
 
 .form_input {
@@ -26,15 +26,15 @@
     padding: 0.7rem;
     box-sizing: border-box;
     border-radius: 4px ;
-    border: 2px solid #dddddd;
+    border: 2px solid var(--border-white);
     outline: none;
-    background: #eeeeee;
+    background: var(--background);
     transition: background 0.2s, border-color 0.2s;
 }
 
 .form_input:focus {
-    border-color: blue;
-    background: #ffffff;
+    border-color: var(--border-blue);
+    background: var(--background-grey);
 }
 
 
@@ -43,10 +43,10 @@
     padding: 15px 30px;
     font-weight: bold;
     font-size: 17px;
-    color: white;
+    color: var(--text-primary);
     border: none;
     border-radius: 2px;
-    background:  blue;
+    background:  var(--background-lightBlue);
     cursor: pointer;
     outline: none;
 
@@ -58,20 +58,20 @@
     padding: 15px 30px;
     font-weight: bold;
     font-size: 17px;
-    color: white;
+    color: var(--text-white);
     border: none;
     border-radius: 2px;
-    background:  red;
+    background:  var(--background-orange);
     cursor: pointer;
     outline: none;
 }
 
 .cancel_color:hover {
-    background: darkred;
+    background: var(--background-orange);
 }
 
 .btn_color:hover {
-    background: darkblue;
+    background: var(--background-lightBlue);
 }
 
 .btn:active {
@@ -83,7 +83,7 @@
 }
 
 .form_link {
-    color: blue;
+    color: var(--text-blue);
     cursor: pointer;
     text-decoration: none;
     font-size: 20px;
@@ -91,7 +91,7 @@
 
 .form_link:hover {
     text-decoration: underline;
-    color: Green;
+    color: var(--text-green);
 }
 
 

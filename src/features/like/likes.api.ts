@@ -9,6 +9,10 @@ export const likePost = async (postId: string) => {
     reverbClientWithAuth.put<void>('/api/like/like-post/' + postId);
 }
 
+export const unlikePost = async (postId: string) => {
+    reverbClientWithAuth.delete<void>('/api/like/unlike-post/' + postId);
+}
+
 export const checkIfPostCanBeLiked = async (postId: string): Promise<boolean> => {
     const { data: canLike } = await reverbClientWithAuth.get<boolean>('/api/like/check-if-liked/' + postId);
 
