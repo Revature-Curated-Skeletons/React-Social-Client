@@ -274,8 +274,8 @@ h3 {
 /* PROFILE */
 
 #ProfilePage {
-  width: 1000px;
-  height: 900px;
+  width: 800px;
+  height: 1000px;
   margin: 1rem;
   padding: 2rem;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);

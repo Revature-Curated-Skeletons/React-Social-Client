@@ -23,3 +23,8 @@ export const followUser = async (id: string) => {
 export const unfollowUser = async (id: string) => {
     reverbClientWithAuth.delete<void>('api/user/unfollow-user/'+id);
 }
+
+export const canFollow = async (id:string): Promise<boolean> => {
+    const {data: followable} = await reverbClientWithAuth.get<boolean>('api/user/can-follow/' + id);
+    return followable;
+}

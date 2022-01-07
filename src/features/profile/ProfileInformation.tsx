@@ -6,7 +6,7 @@ import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
-import { followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
+import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
 import { updateProfile } from "firebase/auth";
 
 
@@ -27,7 +27,7 @@ export default function ProfileInformation(props: any) {
     // Constants to be manipulated within .then statements
     const [followButton, setButton] = React.useState(buttonName);
     const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
-    const [toggleButton, setToggleButton] = React.useState(true);
+    const [toggleButton, setToggleButton] = React.useState(false);
     const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
 
 
@@ -40,6 +40,7 @@ export default function ProfileInformation(props: any) {
         else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
     }
 
+
     // Toggles the follow button and handles the follow api calls.
     function toggleFollowButton() {
         if (toggleButton === true){
@@ -47,8 +48,7 @@ export default function ProfileInformation(props: any) {
             followUser(profile.user_id).then( async () => {
                 updateProfile();
             })
-            buttonName = "Unfollow"
-            setButton(buttonName);
+            parseFollowBtn();
             
         } else 
         {
@@ -57,14 +57,24 @@ export default function ProfileInformation(props: any) {
                 updateProfile();
             })
 
-            buttonName = "Follow"
+            parseFollowBtn();
+        }
+    }
+
+    function parseFollowBtn() {
+        if (toggleButton === true) {
+            buttonName = "Follow";
+            setButton(buttonName);
+        }
+        else {
+            buttonName = "Unfollow"
             setButton(buttonName);
         }
     }
 
+
     
     useEffect(() => {
-        console.log(profile);
         setDoneLoading(false);
         if(id === undefined) {
             dispatch(getProfileAsync(profile));
@@ -77,6 +87,10 @@ export default function ProfileInformation(props: any) {
                 setTimeout(() => setDoneLoading(true), 200);
             })
         }
+        canFollow(profile.user_id).then((data) => {
+            setToggleButton(data);
+            parseFollowBtn();
+        });
       }, [props.beep]); // beep beep :^)
 
     const goToEditProfile = () => {
@@ -100,7 +114,7 @@ export default function ProfileInformation(props: any) {
                 </div>
                 </Card.Title>
                 
-                <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button>
+                {!(id === undefined) ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
                 
                 <br /><br />
                 
@@ -118,8 +132,9 @@ export default function ProfileInformation(props: any) {
                     Location: {profile.location}
                 </Card.Text>
             </Card.Body>
+            {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
         </Card>
-        {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
+        
         </Grid>) : (<Image id="LoadingImg" src = {"https://app.revature.com/assets/images/ajax-loader-logo.0cd555cc.gif"} 
         style={{height:'192px', width: '300px'}} fluid data-testid="gif"/>)
     )
