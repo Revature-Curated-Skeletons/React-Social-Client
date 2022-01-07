@@ -19,12 +19,14 @@ export default function ProfileInformation(props: any) {
     const { id } = useParams();
     const [showEditButton, setShowEditButton] = React.useState(false);
 
-    let initialFollow:number = 0;
+    let initialFollowerNum:number = 0;
     let initalUserId:string = "";
+    let initialFollow = "Follow Button";
     let buttonName = "Follow user";
     const [followButton, setButton] = useState(buttonName);
-    const [follow, setFollow] = useState(initialFollow);
+    const [follow, setFollowButton] = useState(initialFollow);
     const [userId, setUserId] = useState(initalUserId);
+    const [followerNum, setFollowerNum] = useState(initialFollowerNum);
 
     let toggleButton:boolean = true;
 
@@ -65,7 +67,7 @@ export default function ProfileInformation(props: any) {
 
     function getFollowerNumber() {
         getUserId();
-        return reverbClientWithAuth.get("api/user/get-followers/"+userId);
+        return reverbClientWithAuth.get("api/user/get-followers/"+ userId).then((data) => setFollowerNum(data.data));
     }
 
     function toggleFollowButton() {
@@ -73,9 +75,9 @@ export default function ProfileInformation(props: any) {
         // if(profile.id == getUserId())
         // getUserId();
         console.log("user id! ");
-        console.log(userId);
-        let numFollower = getFollowerNumber();
-        console.log(numFollower);
+        // console.log(userId);
+        // let numFollower = getFollowerNumber();
+        console.log(getFollowerNumber());
         // getFollowers();
         //check if person is already following profile
         //check that its not the current users profile
