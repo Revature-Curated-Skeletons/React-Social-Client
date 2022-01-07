@@ -6,10 +6,8 @@ import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
-import { reverbClient, reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
-import { Profile } from "../profile/profile";
-import { get } from "@reduxjs/toolkit/node_modules/immer/dist/internal";
 import { followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
+import { updateProfile } from "firebase/auth";
 
 
 export default function ProfileInformation(props: any) {
@@ -33,38 +31,21 @@ export default function ProfileInformation(props: any) {
     const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
 
 
-    function updateNum() {
-        updateFollowerNumber();
-        updateFollowingNumber();
-    }
-
-    // Updates the followr number using the API and the user's ID.
-    function updateFollowerNumber() {
-        getUserFollowers(profile.user_id)
-            .then(
-                async (data) => { 
-                    setFollowerNum(data)
-                }
-            );
-
-    }
-
-    // Updates the following number
-    function updateFollowingNumber() {
-        getUserFollowings(profile.user_id)
-            .then(
-                async (data) => {
-                    setFollowingNum(data)
-                }
-            );
+    // Fetches a fresh profile
+    function updateProfile() {
+        if (id === undefined)
+        {
+            setTimeout(() => dispatch(getProfileAsync(profile)), 100);
+        }
+        else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
     }
 
     // Toggles the follow button and handles the follow api calls.
     function toggleFollowButton() {
         if (toggleButton === true){
             setToggleButton(false);
-            followUser(profile.user_id).then(async () => {
-                setFollowerNum(followerNum+1);
+            followUser(profile.user_id).then( async () => {
+                updateProfile();
             })
             buttonName = "Unfollow"
             setButton(buttonName);
@@ -73,7 +54,7 @@ export default function ProfileInformation(props: any) {
         {
             setToggleButton(true);
             unfollowUser(profile.user_id).then(async () => {
-                setFollowerNum(followerNum -1);
+                updateProfile();
             })
 
             buttonName = "Follow"
@@ -83,8 +64,8 @@ export default function ProfileInformation(props: any) {
 
     
     useEffect(() => {
+        console.log(profile);
         setDoneLoading(false);
-        updateNum();
         if(id === undefined) {
             dispatch(getProfileAsync(profile));
             setShowEditButton(true);
@@ -114,8 +95,8 @@ export default function ProfileInformation(props: any) {
                 <Card.Title 
                 id = "ProfileName">{profile.first_name} {profile.last_name}
                 <div>
-                    <h6 id="followers-num">followers: {followerNum}</h6>
-                    <h6 id="following-num">following: {followingNum}</h6>
+                    <h6 id="followers-num">followers: {profile.follower_num}</h6>
+                    <h6 id="following-num">following: {profile.following_num}</h6>
                 </div>
                 </Card.Title>
                 
