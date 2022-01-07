@@ -30,7 +30,7 @@ function SearchBar() {
   const renderSearchResults = () => {
     if (input) {
       if (initialResults.length) {
-        const results:any[] = initialResults.filter(
+        const results:SearchResult[] = initialResults.filter(
           result => result.email.includes(input)
         );
         console.log(results)

@@ -1,13 +1,13 @@
-import { NavLink } from 'react-router-dom';
+
 import Result from './Result'
 
 function ResultsList({ results }: any) {
+  console.log(results)
   return (
     <>
       {
-        results.map((result: any) => {
-          <Result />
-      }
+        results.map((result: any) => <Result user={result} />
+        )}
       <br/>
     </>
   );
