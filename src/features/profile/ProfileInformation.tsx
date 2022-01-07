@@ -48,43 +48,36 @@ export default function ProfileInformation(props: any) {
         
     // }
     
-    function getUserId() {
+    function getUserIdFromCurrentProfile() {
         // let id = Profile;
         // getNumFollowers();
         console.log('FOLLOWERS: ---------------------------------');
         // let id = reverbClientWithAuth.get("api/user/profile/"+profile.id).then((data) => console.log(data));
         let id = reverbClientWithAuth.get("api/user/profile/"+profile.id).then((data) => setUserId(data.data));
-
-        // return id.then(function (data) {
-        //     if(data){
-        //         let middle = data;
-        //     }
-        //     setUserId(data);
-        // });;
-        // api/user/profile/e5386d10-39db-4f7c-ab20-ca2302bc1071
-        // console.log(getData());
     }
 
     function getFollowerNumber() {
-        getUserId();
-        return reverbClientWithAuth.get("api/user/get-followers/"+ userId).then((data) => setFollowerNum(data.data));
+        getUserIdFromCurrentProfile();
+        reverbClientWithAuth.get("api/user/get-followers/"+ userId).then((data) => setFollowerNum(data.data));
+        console.log("COLE LOOK HERE");
+        console.log(followerNum);
+
+    }
+
+    function addFollower() {
+        reverbClientWithAuth.put("api/user/follow-user/" + userId);
+    }
+
+    function removeFollower() {
+        reverbClientWithAuth.delete("api/user/unfollow-user/" + userId);
     }
 
     function toggleFollowButton() {
-
-        // if(profile.id == getUserId())
-        // getUserId();
-        console.log("user id! ");
-        // console.log(userId);
-        // let numFollower = getFollowerNumber();
-        console.log(getFollowerNumber());
-        // getFollowers();
-        //check if person is already following profile
-        //check that its not the current users profile
-            //add follower
-        
-        
         if (toggleButton === true){
+            console.log("before adding follower");
+            addFollower();
+            getFollowerNumber();
+            console.log("after adding follower");
             toggleButton = false;
             buttonName = "Unfollow user"
             setButton(buttonName);
@@ -96,8 +89,38 @@ export default function ProfileInformation(props: any) {
             setButton(buttonName);
         }
     }
+
+    // function toggleFollowButton() {
+
+    //     // if(profile.id == getUserId())
+    //     // getUserId();
+    //     getFollowerNumber();
+    //     console.log("user id! ");
+    //     // console.log(userId);
+    //     // let numFollower = getFollowerNumber();
+    //     // console.log(getFollowerNumber());
+    //     // getFollowers();
+    //     //check if person is already following profile
+    //     //check that its not the current users profile
+    //         //add follower
+        
+        
+    //     //TODO: implement logic that checks if user is following/not following
+    //     if (toggleButton === true){
+    //         toggleButton = false;
+    //         buttonName = "Unfollow user";
+    //         setButton(buttonName);
+            
+    //     } else 
+    //     {
+    //         toggleButton = true;
+    //         buttonName = "follow user";
+    //         setButton(buttonName);
+    //     }
+    // }
     
     useEffect(() => {
+        getFollowerNumber();
         setDoneLoading(false);
         if(id === undefined) {
             dispatch(getProfileAsync(profile));
@@ -129,7 +152,7 @@ export default function ProfileInformation(props: any) {
                 
                 <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
                 <br></br>
-                <text>followers: </text>
+                <text>followers: {followerNum} </text>
                 <br></br>
                 <text>following: </text>
                 <br /><br />
