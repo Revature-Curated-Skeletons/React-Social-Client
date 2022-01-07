@@ -9,6 +9,7 @@ import Image from 'react-bootstrap/Image'
 import { reverbClient, reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
 import { Profile } from "../profile/profile";
 import { get } from "@reduxjs/toolkit/node_modules/immer/dist/internal";
+import { followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
 
 
 export default function ProfileInformation(props: any) {
@@ -19,62 +20,71 @@ export default function ProfileInformation(props: any) {
     const { id } = useParams();
     const [showEditButton, setShowEditButton] = React.useState(false);
 
+    // Initial states for our constants
     let initialFollowerNum:number = 0;
     let initalUserId:string = "";
-    let initialFollow = "Follow Button";
-    let buttonName = "Follow user";
-    const [followButton, setButton] = useState(buttonName);
-    const [follow, setFollowButton] = useState(initialFollow);
-    const [userId, setUserId] = useState(initalUserId);
+    let buttonName = "Follow";
+    let initialFollowingNum:number = 0;
+
+    // Constants to be manipulated within .then statements
+    const [followButton, setButton] = React.useState(buttonName);
     const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
-    const [toggleButton, setToggleButton] = useState(true);
+    const [toggleButton, setToggleButton] = React.useState(true);
+    const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
 
-    function getUserIdFromCurrentProfile() {
-        console.log('FOLLOWERS: ---------------------------------');
-        let id = reverbClientWithAuth.get("api/user/profile/"+profile.id).then((data) => setUserId(data.data));
+
+    function updateNum() {
+        updateFollowerNumber();
+        updateFollowingNumber();
     }
 
+    // Updates the followr number using the API and the user's ID.
     function updateFollowerNumber() {
-        getUserIdFromCurrentProfile();
-        reverbClientWithAuth.get("api/user/get-followers/"+ userId).then((data) => setFollowerNum(data.data));
-        console.log("COLE LOOK HERE");
+        getUserFollowers(profile.user_id)
+            .then(
+                async (data) => { 
+                    setFollowerNum(data)
+                }
+            );
 
     }
 
-    function addFollower() {
-        reverbClientWithAuth.put("api/user/follow-user/" + userId);
+    // Updates the following number
+    function updateFollowingNumber() {
+        getUserFollowings(profile.user_id)
+            .then(
+                async (data) => {
+                    setFollowingNum(data)
+                }
+            );
     }
 
-    function removeFollower() {
-        reverbClientWithAuth.delete("api/user/unfollow-user/" + userId);
-    }
-
+    // Toggles the follow button and handles the follow api calls.
     function toggleFollowButton() {
         if (toggleButton === true){
-            addFollower();
-            console.log(toggleButton);
-            console.log("hi dario");
             setToggleButton(false);
-            console.log(toggleButton);
-            console.log("bye dario");
-            buttonName = "Unfollow user"
+            followUser(profile.user_id).then(async () => {
+                setFollowerNum(followerNum+1);
+            })
+            buttonName = "Unfollow"
             setButton(buttonName);
-            setFollowerNum(followerNum + 1);
             
         } else 
         {
-            removeFollower();
             setToggleButton(true);
-            buttonName = "follow user"
+            unfollowUser(profile.user_id).then(async () => {
+                setFollowerNum(followerNum -1);
+            })
+
+            buttonName = "Follow"
             setButton(buttonName);
-            setFollowerNum(followerNum - 1);
         }
     }
 
     
     useEffect(() => {
-        updateFollowerNumber();
         setDoneLoading(false);
+        updateNum();
         if(id === undefined) {
             dispatch(getProfileAsync(profile));
             setShowEditButton(true);
@@ -101,15 +111,18 @@ export default function ProfileInformation(props: any) {
             </Stack>
             <br />
             <Card.Body id="profileBody">
-                <Card.Title id = "ProfileName">{profile.first_name} {profile.last_name}</Card.Title>
+                <Card.Title 
+                id = "ProfileName">{profile.first_name} {profile.last_name}
+                <div>
+                    <h6 id="followers-num">followers: {followerNum}</h6>
+                    <h6 id="following-num">following: {followingNum}</h6>
+                </div>
+                </Card.Title>
                 
-                <button type="button" onClick={() =>toggleFollowButton()} > {followButton} </button>
-                <br></br>
-                <text>followers: {followerNum} </text>
-                <br></br>
-                <text>following: </text>
+                <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button>
+                
                 <br /><br />
-               
+                
                 <Card.Text id="AboutMe">
                     <h5>About Me</h5>
                     {profile.about_me}

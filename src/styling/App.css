@@ -349,6 +349,23 @@ h3 {
   margin-right: auto;
 }
 
+#follow-btn {
+  float: right;
+  background: var(--text-green);
+}
+
+#following-num {
+  margin-top: -3%;
+  padding-right: 10px;
+  float: right;
+}
+
+#followers-num {
+  margin-top: -5%;
+  padding-right: 10px;
+  float: right;
+}
+
 /* EDIT PROFILE */
 
 #editCol2 {
