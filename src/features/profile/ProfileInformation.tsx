@@ -6,8 +6,10 @@ import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
-import { reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
+import { reverbClient, reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
+import { Profile } from "../profile/profile";
 
+// const ProfileInformationComponent = ({}:{})
 
 export default function ProfileInformation(props: any) {
     const [doneLoading, setDoneLoading] = React.useState(false);
@@ -17,17 +19,68 @@ export default function ProfileInformation(props: any) {
     const { id } = useParams();
     const [showEditButton, setShowEditButton] = React.useState(false);
 
+    let initialFollow:number = 0;
+    let initalUserId:string = "";
     let buttonName = "Follow user";
-    const [follow, setButton] = useState(buttonName);
+    const [followButton, setButton] = useState(buttonName);
+    const [follow, setFollow] = useState(initialFollow);
+    const [userId, setUserId] = useState(initalUserId);
+
     let toggleButton:boolean = true;
 
-    function getFollowers() {
-        reverbClientWithAuth.get("/get-followers/{userId}");
+
+
+    // function getData()  { 
+    //      const getFollowers = async (postId: string): Promise<any> => {
+    //         const { data } = await reverbClientWithAuth.get<any>('/profile/e5386d10-39db-4f7c-ab20-ca2302bc1071');
+    //         console.log('before return');
+    //         return data;
+    //     }
+    //     getFollowers('e5386d10-39db-4f7c-ab20-ca2302bc1071').then(asynch () => {
+            
+    //     }).catch((e) => {
+    //     //unsuccessful
+    //     setCanLike(true);
+    //     console.log(e)
+    // })
+        
+    // }
+    
+    function getUserId() {
+        // let id = Profile;
+        // getNumFollowers();
+        console.log('FOLLOWERS: ---------------------------------');
+        // let id = reverbClientWithAuth.get("api/user/profile/"+profile.id).then((data) => console.log(data));
+        let id = reverbClientWithAuth.get("api/user/profile/"+profile.id).then((data) => setUserId(data.data));
+
+        // return id.then(function (data) {
+        //     if(data){
+        //         let middle = data;
+        //     }
+        //     setUserId(data);
+        // });;
+        // api/user/profile/e5386d10-39db-4f7c-ab20-ca2302bc1071
+        // console.log(getData());
+    }
+
+    function getFollowerNumber() {
+        getUserId();
+        return reverbClientWithAuth.get("api/user/get-followers/"+userId);
     }
 
     function toggleFollowButton() {
 
-        getFollowers();
+        // if(profile.id == getUserId())
+        // getUserId();
+        console.log("user id! ");
+        console.log(userId);
+        let numFollower = getFollowerNumber();
+        console.log(numFollower);
+        // getFollowers();
+        //check if person is already following profile
+        //check that its not the current users profile
+            //add follower
+        
         
         if (toggleButton === true){
             toggleButton = false;
@@ -71,14 +124,14 @@ export default function ProfileInformation(props: any) {
             <br />
             <Card.Body id="profileBody">
                 <Card.Title id = "ProfileName">{profile.first_name} {profile.last_name}</Card.Title>
-                {/*
+                
                 <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
                 <br></br>
                 <text>followers: </text>
                 <br></br>
                 <text>following: </text>
                 <br /><br />
-                */}
+               
                 <Card.Text id="AboutMe">
                     <h5>About Me</h5>
                     {profile.about_me}
