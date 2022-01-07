@@ -18,9 +18,7 @@ export default function Result({ user }: any) {
   const [ profileId, setProfileId ] = useState()
 
   const profileURL: string = "/profile/" + initialResult.id
-
   
-
   useEffect(() => { 
     const getProfileId = async () => {
       if (!profile) {
@@ -36,7 +34,8 @@ export default function Result({ user }: any) {
 
   return (
     <>
-      <NavLink to={"/profile/" + profile?.id} key={profile?.id}>{user.email}</NavLink><br key={initialResult.id + "1"}/>
+      <img src={profile?.profile_img} height='48' width='48'/>
+      <NavLink to={"/profile/" + profile?.id} key={profile?.id}>{user.email} {profile?.first_name}</NavLink><br key={initialResult.id + "1"}/>
     </>
   )
 }
