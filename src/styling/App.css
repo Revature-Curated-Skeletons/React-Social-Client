@@ -274,7 +274,7 @@ h3 {
 /* PROFILE */
 
 #ProfilePage {
-  width: 1000px;
+  width: 800px;
   height: 1000px;
   margin: 1rem;
   padding: 2rem;
@@ -353,6 +353,23 @@ h3 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#follow-btn {
+  float: right;
+  background: var(--text-green);
+}
+
+#following-num {
+  margin-top: -3%;
+  padding-right: 10px;
+  float: right;
+}
+
+#followers-num {
+  margin-top: -5%;
+  padding-right: 10px;
+  float: right;
 }
 
 /* EDIT PROFILE */

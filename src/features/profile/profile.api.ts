@@ -25,3 +25,4 @@ export const checkProfileOwnership = async (id: string) => {
     const {data: owns} = await reverbClientWithAuth.get<boolean>("/api/profile/checkProfileOwnership/"+id);
     return owns;
 }
+
