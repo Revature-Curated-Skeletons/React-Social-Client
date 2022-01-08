@@ -64,33 +64,34 @@ export default function ProfileInformation(props: any) {
         doneLoading ? (
         <Grid container direction="column" alignItems="center" justify="center">
         <Card id="ProfilePage">
-            <Stack >
+            <Stack id="ProfileImageHeader">
                 <Card.Img src={profile.profile_img} id="ProfileImg" />
                 <Card.Img src={profile.header_img} id="HeaderImg" />
             </Stack>
-            <br />
             <Card.Body id="profileBody">
                 <Card.Title id = "ProfileName">{profile.first_name} {profile.last_name}</Card.Title>
-                {/*
-                <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
+                
+                {/* <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
                 <br></br>
                 <text>followers: </text>
                 <br></br>
                 <text>following: </text>
-                <br /><br />
-                */}
+                <br /><br /> */}
+               
                 <Card.Text id="AboutMe">
-                    <h5>About Me</h5>
-                    {profile.about_me}
+                    <h4>About Me</h4>
+                    <hr></hr>
+                    <h5>{profile.about_me}</h5>
                 </Card.Text>
                 <br />
                 <Card.Text id="AboutMe">
-                    <h5>Fast Facts</h5>
-                    Birthday: {profile.birthday}
+                    <h4>Fast Facts</h4>
+                    <hr></hr>
+                    <h5>Birthday: {profile.birthday}</h5>
                     <br />
-                    Hobbies: {profile.hobby}
+                    <h5>Hobbies: {profile.hobby}</h5>
                     <br />
-                    Location: {profile.location}
+                    <h5>Location: {profile.location}</h5>
                 </Card.Text>
             </Card.Body>
         </Card>
