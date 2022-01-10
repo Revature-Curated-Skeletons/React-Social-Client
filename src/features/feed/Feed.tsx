@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import SubmitPost from '../post/SubmitPost'
-import { getPostsAsync, postPostAsync, selectPosts } from '../post/postSlice'
-import PostComponent from '../post/PostComponent'
+import SubmitPost from '../post/SubmitPost';
+import { getPostsAsync, postPostAsync, selectPosts } from '../post/postSlice';
+import PostComponent from '../post/PostComponent';
 import SubmitComment from '../comment/SubmitComment';
 import { createComment } from '../comment/comment.api';
 import { initialPost } from '../post/post';
 import { initialComment } from '../comment/comment';
-import RefreshIcon from '../../assets/images/refreshicon.svg'
+import RefreshIcon from '../../assets/images/refreshicon.svg';
+import SearchBar from '../search/SearchBar';
 
 export let util = {
   updateAll: () => { },
@@ -17,7 +18,6 @@ export let util = {
   dispatchComment: () => { },
   dispatchPost: () => { }
 };
-
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const Feed = () => {
   const [shouldUpdateLikes, setShouldUpdateLikes] = useState([false]);
 
   util.updateAll = () => {
-    dispatch(getPostsAsync({}))
-    setShouldUpdateLikes([!shouldUpdateLikes[0]]); // :^)
+    dispatch(getPostsAsync({}));
+    setShouldUpdateLikes([!shouldUpdateLikes[0]]); // :^);
     // console.log("Updated feed");
   }
 
@@ -60,39 +60,37 @@ const Feed = () => {
   }
 
   return (
-    <Container id="feedBody">
-      <Row>
-        <Col id="postColumn" xs={{span: 8, offset: 2}}>
-          <div id="feedButtons"> 
-            <Button data-testid="postButton" id="postBtn" variant="primary" onClick={() => util.leavePost()}>
-              + Create Post
-            </Button>
-            <Button data-testid="refreshButton" id="refreshBtn" variant="primary" onClick={() => util.updateAll()}>
-              <img src={RefreshIcon} /> Refresh
-            </Button>
-          </div>
-          <SubmitPost
-            setPost={setPost}
-            post={post}
-            dispatchPost={util.dispatchPost}
-            show={modalShowPost}
-            onHide={() => setModalShowPost(false)}
-          />
-          <SubmitComment
-            setComment={setComment}
-            comment={comment}
-            show={modalShowComment}
-            dispatchComment={util.dispatchComment}
-            onHide={() => setModalShowComment(false)}
-            postId={postId}
-          />
-          {posts.map((post) => (<PostComponent shouldUpdateLikes={shouldUpdateLikes}
-            post={post} leaveComment={util.leaveComment} key={post.id} />)).reverse()}
-        </Col>
-        
-      </Row>
-    </Container>
+    <div id="feedBody">
+      <SearchBar />
+      <div id="postColumn">
+        <div id="feedButtons"> 
+          <Button data-testid="postButton" id="postBtn" className='feed-btns' variant="primary" onClick={() => util.leavePost()}>
+            + Create Post
+          </Button>
+          <Button data-testid="refreshButton" id="refreshBtn" className='feed-btns' variant="primary" onClick={() => util.updateAll()}>
+            <img id="refresh-icon" src={RefreshIcon} /> Refresh
+          </Button>
+        </div>
+        <SubmitPost
+          setPost={setPost}
+          post={post}
+          dispatchPost={util.dispatchPost}
+          show={modalShowPost}
+          onHide={() => setModalShowPost(false)}
+        />
+        <SubmitComment
+          setComment={setComment}
+          comment={comment}
+          show={modalShowComment}
+          dispatchComment={util.dispatchComment}
+          onHide={() => setModalShowComment(false)}
+          postId={postId}
+        />
+        {posts.map((post) => (<PostComponent shouldUpdateLikes={shouldUpdateLikes}
+          post={post} leaveComment={util.leaveComment} key={post.id} />)).reverse()}
+      </div>
+    </div>
   );
 }
 
-export default Feed
+export default Feed;

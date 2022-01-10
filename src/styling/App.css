@@ -35,13 +35,8 @@ Page styling regulars:
     letter space: 3%
 */
 
-.App {
-  text-align: center;
-}
-
 /*Testing Darkula*/
 body {
-  padding: 25px;
   background-color: var(--background);
   color: var(--text-primary);
   font-size: 25px;
@@ -59,10 +54,13 @@ element.item(i).classList.toggle("dark-mode");
 
 }*/
 
-#theme_button {
+#theme-button {
+  position: relative;
+  left: -1vh;
   background-color: var(--background-grey);
   color: var(--text-white);
   border: hidden;
+  margin: 1vh;
 }
 
 @font-face {
@@ -86,12 +84,32 @@ element.item(i).classList.toggle("dark-mode");
 }
 
 #navbar {
-  background-color: var(--background-lightGrey);
-  width: 150;
-  height: "100vh";
-  min-height: "450px";
-  /* font-size: "24px";
-    line-height: "30px"; */
+  display: block;
+  background-color: var(--background-grey);
+  padding: 1.5vh 0vh 1vh 1.5vh;
+  height: 100vh;
+  font-size: 3vh;
+  line-height: 30px;
+  box-shadow: 0px 0px 2px var(--background-grey);
+}
+
+#navbar-links {
+  display: grid;
+  flex-direction: column;
+}
+
+.navbar-link {
+  color: var(--text-white);
+  font-size: 3.5vh;
+  margin-top: 7vh;
+}
+
+.navbar-link:hover, #theme-button:hover {
+  color: var(--background-orange);
+}
+
+.navbar-link:focus {
+  color: var(--background-orange);
 }
 
 h3 {
@@ -103,20 +121,32 @@ h3 {
 /* LANDING */
 
 #landingCard {
-  padding: 10%;
-  margin: 10%;
-  border-radius: 2%;
+  top: 10vh;
+  width: 70vh;
+  padding: 70px;
+  margin-right: 2vw;
+  border-radius: 20px;
   background-color: var(--background-grey);
-  color: var(--text-primary);
+  box-shadow: 0px 0px 2px var(--background-grey);
+  color: var(--text-white);
 }
 
-#landingCard {
-  padding: 10%;
-  margin: 10%;
-  background-color: var(--background-grey);
-  color: var(--text-primary);
-  margin: 5%;
-  border-radius: 20px;
+#logo-reverb {
+  position: relative;
+  top: 2vh;
+  width: 60vh;
+  margin-right: 19.5vh;
+  opacity: 75%;
+}
+
+#logo-revature {
+  position: relative;
+  top: 1vh;
+  opacity: 75%;
+  width: 30vh;
+  position: relative;
+  top: -1vw;
+  margin-left: 1vh;
 }
 
 /*LOGIN & REGISTRATION*/
@@ -129,28 +159,17 @@ h3 {
 
 #loginCard {
   background-color: var(--background-grey);
-  color: var(--text-primary);
+  color: var(--text-white);
   min-width: 600px;
   min-height: 500px;
-  margin: 0;
   border-radius: 20px;
-}
-
-#loginCard button {
-  border-color: var(--border-orange);
-  background-color: var(--background-orange);
-  max-width: 150px;
-  min-height: 40px;
-  border-radius: 13px;
-  font-family: futura-book, sans-serif;
-  font-size: 30px;
+  padding: 20px;
+  box-shadow: 0px 0px 3px var(--background-grey);
 }
 
 #loginCard input {
   margin-right: auto;
   margin-left: auto;
-  margin-top: 20px;
-  margin-bottom: 60px;
   max-width: 350px;
   font-size: 18px;
   border-radius: 20px;
@@ -160,10 +179,12 @@ h3 {
 #password {
   font-family: "futura-medium", sans-serif;
   font-size: 36px;
+  margin: 40px;
 }
 
 .loginRow {
-  margin-right: 150px;
+  display: block;
+  text-align: center;
 }
 
 .loginRow h2 {
@@ -179,46 +200,89 @@ h3 {
   letter-spacing: 3%;
 }
 
-#loginLink,
-#registerLink,
-#logoutLink {
-  color: var(--text-white);
-  font-size: 38px;
-  font-family: "futura-medium", sans-serif;
-  margin-top: 7vh;
-  padding-bottom: 15px;
+/* SEARCH */
+
+#search-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 999;
 }
 
-#profileLink {
-  color: var(--text-white);
-  font-size: 38px;
-  font-family: "futura-medium", sans-serif;
-  margin-top: 7vh;
+#search-container input {
+  width: 55vw;
+  height: 35px;
+  border: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: var(--background-darkGrey);
+  color: var(--text-primary);
+  font-size: 0.8em;
+  padding: 3px 15px;
+  box-shadow: 0px 0px 2px var(--background-darkGrey);
 }
 
-#loginLink:hover,
-#registerLink:hover,
-#profileLink:hover,
-#logoutLink:hover {
-  background-color: var(--background-orange);
+.results-list {
+  position: absolute;
+  top: 55px;
+  width: 55vw;
+  padding: 8px 15px 10px 15px;
+  background-color: var(--background-transparent-darkGrey);
+  z-index: 999;
+  backdrop-filter: blur(7px);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-size: 0.85em;
+  box-shadow: 0px 0px 2px var(--background-transparent-darkGrey);
+}
+
+.search-result {
+  color: var(--text-primary);
+}
+
+.search-result:hover {
+  color: var(--text-primary-hover);
+}
+
+.profile-pic-mini {
+  height: 35px;
+  width: 35px;
+  margin-right: 5px;
 }
 
 /* POST FEED */
 
-#postAuthor {
-  font-family: futura-book, sans-serif;
-  font-size: 18px;
-  letter-spacing: 3%;
-}
-
 #feedBody {
   transition-property: all;
-  transition-duration: 3s;
+  transition-duration: 0.5s;
   transition-timing-function: ease;
 }
 
+#postColumn {
+  display: flex;
+  justify-content: center;
+  width: 55vw;
+  background-color: var(--background-grey);
+  padding: 20px 2vw;
+  box-shadow: 0px 0px 3px var(--background-grey);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+#feedButtons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  justify-items: center;
+}
+
+#postAuthor,
 #postBody {
-  font-family: futura-book, sans-serif;
   font-size: 18px;
   letter-spacing: 3%;
 }
@@ -263,24 +327,19 @@ h3 {
   transition-timing-function: ease-in-out;
 }
 
-#postColumn {
-  background-color: var(--background-grey);
-  padding-top: 2%;
-  padding-right: 10%;
-  padding-left: 10%;
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
-}
-
 /* PROFILE */
 
 #ProfilePage {
-  width: 800px;
-  height: 1000px;
-  margin: 1rem;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 70vw;
   padding: 2rem;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: var(--background-profile);
+  color: var(--text-white);
+  box-shadow: 0px 0px 3px var(--background-profile);
 }
 
 #ProfileImageHeader{
@@ -298,39 +357,33 @@ h3 {
 }
 
 #ProfileName {
+  margin: 1vh 0vw 3vh 0vw;
   text-align: center;
   color: var(--text-primary);
-  font-family: "futura-medium", sans-serif;
-  font-size: 48px;
+  font-size: 40px;
   letter-spacing: 0%;
 }
 
 #AboutMe {
   background-color: var(--background-darkGrey);
+  box-shadow: 0px 0px 3px var(--background-darkGrey);
   color: var(--text-primary);
-  margin-left: -30px;
-  margin-right: -30px;
-  padding: 15px;
-  border-radius: 10px;
+  margin-top: 4vh;
+  padding: 15px 20px;
+  border-radius: 15px;
   text-align: justify;
-  text-indent: 5px;
-  font-family: futura-book, sans-serif;
-  font-size: 12;
+  font-size: 2.75vh;
   letter-spacing: 3%;
 }
 
 #AboutMe h5 {
-  font-family: futura-medium, sans-serif;
+  font-weight: 800;
 }
 
 #HeaderImg {
-  max-height: 350px;
-  max-width: 1000px;
-  position: relative;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
+  height: 30vh;
+  width: 64vw;
+  border-radius: 15px;
 }
 
 #ProfileImg {
@@ -338,10 +391,9 @@ h3 {
   border-radius: 50%;
   height: 175px;
   width: 175px;
-  object-fit: cover;
   position: absolute;
-  top: 30%;
-  left: 40%;
+  top: 18%;
+  left: 52.5%;
   z-index: 2;
   margin-top: -15%;
   background: lightgrey;
@@ -437,117 +489,158 @@ h3 {
 
 /* BUTTONS */
 
+button {
+  border: none;
+}
+
+#leaveCommentBtn,
+#submitCommentBtn,
+#submitPostBtn,
+#UpdateProfile {
+  background-color: var(--background-lightBlue);
+  border-color: var(--background-lightBlue);
+}
+
+#EditProfileButton,
+#loginCard button,
+#postBtn,
+#refreshBtn,
+#reverbButton {
+  background-color: var(--background-orange);
+  border-color: var(--border-orange);
+  box-shadow: 0px 0px 4px var(--border-orange);
+}
+
+#postBtn,
+#refreshBtn {
+  width: fit-content;
+}
+
+#postBtn {
+  margin-right: 5vw;
+}
+
+#refreshBtn {
+  margin-left: 5vw;
+}
+
+#CancelEdits {
+  background-color: var(--background-yellow);
+  border-color: var(--background-yellow);
+}
+
+#loginCard button {
+  max-width: 150px;
+  min-height: 40px;
+  border-radius: 15px;
+  font-size: 30px;
+}
+
+.follow-btn,
+#leaveCommentBtn,
+#postBtn,
+#refreshBtn,
+#reverbBtn,
+#submitCommentBtn,
+#submitPostBtn {
+  border-radius: 20px;
+}
+
+#CancelEdits,
+#EditProfileButton,
+#UpdateProfile {
+  border-radius: 10px;
+}
+
+#EditProfileButton {
+  position: absolute;
+  margin: 0.5vh 0vw 0vh 2vw;
+}
+
+.follow-btn {
+  margin-left: 15px;
+  padding: 1.5px 9px;
+  border-radius: 20px;
+  background-color: rgba(0, 156, 78, 0.8);
+  border-color: rgba(0, 156, 78, 0.8);
+  box-shadow: 0px 0px 2px rgba(0, 156, 78, 0.8);
+  color: var(--text-white);
+  font-size: 0.65em;
+}
+
+.follow-btn:hover {
+  background-color: rgba(0, 190, 95, 0.8);
+  border-color: rgba(0, 190, 95, 0.8);
+  box-shadow: 0px 0px 2px rgba(0, 190, 95, 0.8);
+}
+
+#EditProfileButton,
+#leaveCommentBtn,
+#postBtn,
+#refreshBtn,
+#submitCommentBtn,
+#submitPostBtn {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
 #EditProfileButton {
   margin-bottom: 30px;
 }
 
-#EditProfileButton,
-#UpdateProfile {
-  background-color: var(--background-lightBlue);
-  border-color: transparent;
-  border-radius: 10px;
-  color: var(--text-primary);
-  font-family: futura-book;
-}
-
+#CancelEdits,
 #UpdateProfile {
   width: 10em;
   height: 2.5em;
-}
-
-#CancelEdits {
-  height: 2.5em;
-  width: 10em;
-  background-color: var(--background-yellow);
-  border-color: transparent;
-  border-radius: 10px;
-  color: var(--text-primary);
-  font-family: futura-book, sans-serif;
 }
 
 #postBtn,
-#refreshBtn,
-#leaveCommentBtn,
-#submitPostBtn,
-#submitCommentBtn,
-#loginCard button,
-#EditProfileButton,
-#UpdateProfile,
-#CancelEdits {
-  transition-property: all;
-  -webkit-transition-property: all;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
+#refreshBtn {
+  padding: 5px 16px;
 }
 
-#postBtn:hover,
-#refreshBtn:hover,
-#leaveCommentBtn:hover,
-#submitPostBtn:hover,
-#submitCommentBtn:hover,
-#loginCard button:hover,
-#EditProfileButton:hover,
-#UpdateProfile:hover,
-#CancelEdits:hover {
+#refresh-icon {
+  width: 15px;
+  margin-bottom: 3px;
+}
+
+a,
+body,
+#CancelEdits, #CancelEdits:hover,
+#EditProfileButton, #EditProfileButton:hover,
+.follow-btn, .follow-btn:hover,
+#homeLink, #homeLink:hover,
+#leaveCommentBtn, #leaveCommentBtn:hover,
+#loginCard button, #loginCard button:hover,
+.navbar-link, .navbar-link:hover, #theme-button, #theme-button:hover,
+#postBtn, #postBtn:hover,
+#refreshBtn, #refreshBtn:hover,
+.search-result, .search-result:hover,
+#search-results,
+#submitCommentBtn, #submitCommentBtn:hover,
+#submitPostBtn, #submitPostBtn:hover,
+#UpdateProfile, #UpdateProfile:hover {
   transition-property: all;
   -webkit-transition-property: all;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
-  font-weight: bold;
-  transform: scale(1.05);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+#CancelEdits:hover,
+#EditProfileButton:hover,
+#leaveCommentBtn:hover,
+#loginCard button:hover,
+#postBtn:hover,
+#refreshBtn:hover,
+#submitCommentBtn:hover,
+#submitPostBtn:hover,
+#UpdateProfile:hover {
+  transform: scale(1.02);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 #homeLink:hover {
-  transition-property: all;
-  -webkit-transition-property: all;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
   transform: scale(1.03);
-}
-
-#reverbButton {
-  color: var(--text-primary);
-  background-color: var(--background-orange);
-  border: none;
-  border-radius: 20px;
-}
-
-#feedButtons {
-  margin-bottom: 10%;
-}
-
-#feedButtons button {
-  background-color: var(--background-orange);
-  border-color: var(--border-orange);
-}
-
-#feedButtons button img {
-  height: 20px;
-}
-
-#postBtn {
-  float: left;
-}
-
-#refreshBtn {
-  float: right;
-}
-
-#postBtn,
-#refreshBtn,
-#leaveCommentBtn,
-#submitPostBtn,
-#submitCommentBtn {
-  background-color: var(--background-lightBlue);
-  border-color: var(--border-lightBlue);
-  border-radius: 20px;
-  font-family: futura-book, sans-serif;
-  font-size: 18px;
 }

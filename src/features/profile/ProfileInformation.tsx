@@ -9,134 +9,127 @@ import Image from 'react-bootstrap/Image'
 import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
 import { updateProfile } from "firebase/auth";
 
-
 export default function ProfileInformation(props: any) {
-    const [doneLoading, setDoneLoading] = React.useState(false);
-    const profile = useSelector(selectProfile);
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const { id } = useParams();
-    const [showEditButton, setShowEditButton] = React.useState(false);
+  const [doneLoading, setDoneLoading] = React.useState(false);
+  const profile = useSelector(selectProfile);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
+  const [showEditButton, setShowEditButton] = React.useState(false);
 
-    // Initial states for our constants
-    let initialFollowerNum:number = 0;
-    let initalUserId:string = "";
-    let buttonName = "Follow";
-    let initialFollowingNum:number = 0;
+  // Initial states for our constants
+  let initialFollowerNum:number = 0;
+  let initalUserId:string = "";
+  let buttonName = "Follow";
+  let initialFollowingNum:number = 0;
 
-    // Constants to be manipulated within .then statements
-    const [followButton, setButton] = React.useState(buttonName);
-    const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
-    const [toggleButton, setToggleButton] = React.useState(false);
-    const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
+  // Constants to be manipulated within .then statements
+  const [followButton, setButton] = React.useState(buttonName);
+  const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
+  const [toggleButton, setToggleButton] = React.useState(false);
+  const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
 
-
-    // Fetches a fresh profile
-    function updateProfile() {
-        if (id === undefined)
-        {
-            setTimeout(() => dispatch(getProfileAsync(profile)), 100);
-        }
-        else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
+  // Fetches a fresh profile
+  function updateProfile() {
+    if (id === undefined)
+    {
+        setTimeout(() => dispatch(getProfileAsync(profile)), 100);
     }
+    else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
+  }
 
+  // Toggles the follow button and handles the follow api calls.
+  function toggleFollowButton() {
+    if (toggleButton === true){
+      setToggleButton(false);
+      followUser(profile.user_id).then( async () => {
+          updateProfile();
+      })
+      parseFollowBtn();
 
-    // Toggles the follow button and handles the follow api calls.
-    function toggleFollowButton() {
-        if (toggleButton === true){
-            setToggleButton(false);
-            followUser(profile.user_id).then( async () => {
-                updateProfile();
-            })
-            parseFollowBtn();
+    } else {
+      setToggleButton(true);
+      unfollowUser(profile.user_id).then(async () => {
+          updateProfile();
+      })
+
+      parseFollowBtn();
+    }
+  }
+
+  function parseFollowBtn() {
+    if (toggleButton === true) {
+      buttonName = "Follow";
+      setButton(buttonName);
+    }
+    else {
+      buttonName = "Unfollow"
+      setButton(buttonName);
+    }
+  }
+
+  useEffect(() => {
+    setDoneLoading(false);
+    if(id === undefined) {
+      dispatch(getProfileAsync(profile));
+      setShowEditButton(true);
+      setTimeout(() => setDoneLoading(true), 200);
+    } else {
+      dispatch(getProfileByIdAsync(id));
+      checkProfileOwnership(id).then((owns) => {
+        setShowEditButton(owns);
+        setTimeout(() => setDoneLoading(true), 200);
+      })
+    }
+    canFollow(profile.user_id).then((data) => {
+      setToggleButton(data);
+      parseFollowBtn();
+    });
+  }, [props.beep]); // beep beep :^)
+
+  const goToEditProfile = () => {
+    history.push("/editProfile");
+  }
+  return(
+    doneLoading ? (
+      <div>
+        <div id="ProfilePage">
+          <img src={profile.profile_img} id="ProfileImg" />
+          <img src={profile.header_img} id="HeaderImg" />
+          <Card.Body id="profileBody">
+            <Card.Title id = "ProfileName">
+              {profile.first_name} {profile.last_name} 
+              <div>
+                <h6 id="followers-num">followers: {profile.follower_num}</h6>
+                <h6 id="following-num">following: {profile.following_num}</h6>
+              </div>
+              {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
+            </Card.Title>
             
-        } else 
-        {
-            setToggleButton(true);
-            unfollowUser(profile.user_id).then(async () => {
-                updateProfile();
-            })
-
-            parseFollowBtn();
-        }
-    }
-
-    function parseFollowBtn() {
-        if (toggleButton === true) {
-            buttonName = "Follow";
-            setButton(buttonName);
-        }
-        else {
-            buttonName = "Unfollow"
-            setButton(buttonName);
-        }
-    }
-
-
-    
-    useEffect(() => {
-        setDoneLoading(false);
-        if(id === undefined) {
-            dispatch(getProfileAsync(profile));
-            setShowEditButton(true);
-            setTimeout(() => setDoneLoading(true), 200);
-        } else {
-            dispatch(getProfileByIdAsync(id));
-            checkProfileOwnership(id).then((owns) => {
-                setShowEditButton(owns);
-                setTimeout(() => setDoneLoading(true), 200);
-            })
-        }
-        canFollow(profile.user_id).then((data) => {
-            setToggleButton(data);
-            parseFollowBtn();
-        });
-      }, [props.beep]); // beep beep :^)
-
-    const goToEditProfile = () => {
-        history.push("/editProfile");
-    }
-    return(
-        doneLoading ? (
-        <Grid container direction="column" alignItems="center" justify="center">
-        <Card id="ProfilePage">
-            <Stack id="ProfileImageHeader">
-                <Card.Img src={profile.profile_img} id="ProfileImg" />
-                <Card.Img src={profile.header_img} id="HeaderImg" />
-            </Stack>
-            <Card.Body id="profileBody">
-                <Card.Title 
-                id = "ProfileName">{profile.first_name} {profile.last_name}
-                <div>
-                    <h6 id="followers-num">followers: {profile.follower_num}</h6>
-                    <h6 id="following-num">following: {profile.following_num}</h6>
-                </div>
-                </Card.Title>
-                
                 {!(id === undefined) ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
-                
-                <br /><br />
-                
-                <Card.Text id="AboutMe">
-                    <h4>About Me</h4>
-                    <hr></hr>
-                    <h5>{profile.about_me}</h5>
-                </Card.Text>
-                <br />
-                <Card.Text id="AboutMe">
-                    <h4>Fast Facts</h4>
-                    <hr></hr>
-                    <h5>Birthday: {profile.birthday}</h5>
-                    <br />
-                    <h5>Hobbies: {profile.hobby}</h5>
-                    <br />
-                    <h5>Location: {profile.location}</h5>
-                </Card.Text>
-            </Card.Body>
-            {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
-        </Card>
-        
-        </Grid>) : (<Image id="LoadingImg" src = {"https://app.revature.com/assets/images/ajax-loader-logo.0cd555cc.gif"} 
-        style={{height:'192px', width: '300px'}} fluid data-testid="gif"/>)
+
+            <Card.Text id="AboutMe">
+              <h5>About Me</h5>
+              {profile.about_me}
+            </Card.Text>
+            <Card.Text id="AboutMe">
+              <h5>Fast Facts</h5>
+              Birthday: {profile.birthday}
+              <br />
+              Hobbies: {profile.hobby}
+              <br />
+              Location: {profile.location}
+            </Card.Text>
+          </Card.Body>
+        </div>
+      </div>
+    ) : (
+      <Image
+        id="LoadingImg"
+        src = {"https://app.revature.com/assets/images/ajax-loader-logo.0cd555cc.gif"} 
+        style={{height:'192px', width: '300px'}}
+        fluid data-testid="gif"
+      />
     )
+  )
 }
