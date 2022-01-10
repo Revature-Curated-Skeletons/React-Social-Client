@@ -4,7 +4,7 @@ export const getNumLikes = async (postId: string): Promise<number> => {
     const { data } = await reverbClientWithAuth.get<number>('/api/like/get-number-of-likes/' + postId);
     return data;
 }
-
+    
 export const likePost = async (postId: string) => {
     reverbClientWithAuth.put<void>('/api/like/like-post/' + postId);
 }
