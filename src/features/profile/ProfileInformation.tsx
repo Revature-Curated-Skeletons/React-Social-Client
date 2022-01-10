@@ -6,6 +6,7 @@ import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSl
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
 import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
+import React from "react";
 
 
 /*
