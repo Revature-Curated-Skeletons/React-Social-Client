@@ -395,7 +395,7 @@ h3 {
   top: 18%;
   left: 52.5%;
   z-index: 2;
-  margin-top: -15%;
+  /* margin-top: -15%; */
   background: lightgrey;
 }
 
