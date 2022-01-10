@@ -1,18 +1,19 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useAppDispatch } from '../../app/hooks'
 import { setTokenAsync } from './authSlice'
 import { reverbClientWithAuth } from '../../remote/reverb-api/reverbClient'
+import { useHistory } from 'react-router-dom'
 
 export let util = {loginAccount: (event: any) => {}};
 
 export default function Login() {
 
   const dispatch = useAppDispatch();
-
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const history = useHistory();
 
   // Verifying login credentials through firebase, alerting with error message coming from Firebase
   util.loginAccount = async (event: any) => {
@@ -28,6 +29,7 @@ export default function Login() {
 
       // Call to backend on successful log in that ensures user is already stored in our database, if it is not then the user is added to the database.
       reverbClientWithAuth.post("/api/user/login");
+      history.push("/feed")
 
     }
   }
@@ -45,7 +47,7 @@ export default function Login() {
                 <Form id="inputLogin">
                   <Form.Group id="email">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" ref={emailRef} required />
+                    <Form.Control type="email" ref={emailRef} required autoFocus />
                   </Form.Group>
                   <Form.Group id="password">
                     <Form.Label>Password</Form.Label>

@@ -1,15 +1,19 @@
+import GoodResult from './GoodResult';
+import BadResult from './BadResult';
 
-import Result from './Result'
-
-function ResultsList({ results }: any) {
-  console.log(results)
+export default function ResultsList({ results }:any) {
+  if (results.length) {
+    return (
+      <div className='results-list'>
+        {
+          results.map((result: any) => <GoodResult user={result} />)
+        }
+      </div>
+    );
+  }
   return (
     <div className='results-list'>
-      {
-        results.map((result: any) => <Result user={result} />
-        )}
+      <BadResult />
     </div>
   );
 }
-
-export default ResultsList;

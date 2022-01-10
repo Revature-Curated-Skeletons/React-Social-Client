@@ -1,24 +1,22 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
-import { InputGroup, FormControl } from 'react-bootstrap'
+import React, { useState } from 'react';
 import { reverbClient } from "../../remote/reverb-api/reverbClient";
-import ResultsList from './ResultsList'
-import SearchResult from './SearchResult'
+import ResultsList from './ResultsList';
+import SearchResult from './SearchResult';
 
-function SearchBar() {
+export default function SearchBar() {
   const [input, setInput] = useState("");
   const [initialResults, setInitialResults] = useState<SearchResult[]>([]);
+  const type:string = "people";
 
   async function getSearch() {
     const resp = await reverbClient.get(`/api/search?query=${input}`);
     if (resp.status.toString()[0] != "2") {
       console.log(resp.data);
     }
-    console.log(resp)
-    console.log(resp.data)
     setInitialResults(resp.data.responses);
   }
 
-  // Event handler that handles any change in the search bar, specifically that when the search bar is empty and the first character is added, the database is queried, and the initialResults array is set to every entry, beginning with that character. Further changes longer than a length of one are filtered instead.
+  // Queries the DB only when the first character is typed into search bar. The results are then stored in initialResults (for further filtering) until the search bar is cleared (by backspacing, for instance)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (input.length == 0) {
       setInitialResults([]);
@@ -27,36 +25,31 @@ function SearchBar() {
     setInput(e.target.value);
   }
 
-  const renderSearchResults = () => {
+  const renderSearchResults = (type:string) => {
     if (input) {
+      let results:SearchResult[] = [];
       if (initialResults.length) {
-        const results:SearchResult[] = initialResults.filter(
+        results = initialResults.filter(
           result => result.email.includes(input)
         );
-        console.log(results)
         if (results.length) {
-          return (<ResultsList results={results.slice(0, 8)} />);
+          return (<ResultsList results={results.slice(0, 8)} type={type} />);
         }
       }
-      const items = "users";
-      return (<p>{`No ${items} found`}</p>);
+      return (<ResultsList results={results} type={type} />);
     }
   }
 
   return (
-    <div className='search-container'>
-      <InputGroup className="mb-3">
-        <FormControl
-          placeholder="Search for Users"
-          aria-label="search-input"
-          aria-describedby="basic-addon1"
-          value={input}
-          onChange={handleChange}
-        />
-      </InputGroup>
-      {renderSearchResults()}
+    <div id='search-container'>
+      <input
+        placeholder="Search for People"
+        aria-label="search-input"
+        aria-describedby="basic-addon1"
+        value={input}
+        onChange={handleChange}
+      />
+      {renderSearchResults(type)}
     </div>
-  )
+  );
 }
-
-export default SearchBar;

@@ -1,54 +1,66 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#app {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 5fr;
+}
+
+#main-router-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+a:link, a:active, a:visited {
+  text-decoration: none;
 }
 
 :root {
   --background: white;
-  --background-orange: #f26925;
+  --background-orange: #f26925f6;
   --background-yellow: #fcb414;
   --background-lightBlue: #72a4c2;
-  --background-grey: #474c55;
-  --background-profile: white;
+  --background-grey: #4b5055;
+  --background-profile: #b4b9be;
   --background-lightGrey: #f2f3f5;
-  --background-darkGrey: #e3e5e8;
+  --background-darkGrey: #e6e6eb;
+  --background-transparent-darkGrey: #e6e6ebbf;
   --text-primary: black;
+  --text-primary-hover: #575c66;
   --text-secondary: royalblue;
   --text-green: Green;
   --text-white: White;
   --text-blue: blue;
   --accent-color: purple;
-  --border-orange: #f26925;
+  --border-orange: #f26925f6;
   --border-blue: blue;
   --border-white: white;
   --border-lightBlue: #72a4c2;
 }
 [data-theme="dark"] {
   --background: #202225;
-  --background-orange: #f26925;
+  --background-orange: #f26925f6;
   --background-yellow: #cf8f03;
   --background-lightBlue: #8eafc4;
   --background-lightGrey: #b9b9ba;
-  --background-darkGrey: #2f3136;
-  --background-grey: #474c55;
-  --background-profile: #474c55;
-  --text-primary: #dbd7d1;
+  --background-darkGrey: #51575e;
+  --background-transparent-darkGrey: #464b50b3;
+  --background-grey: #464b50;
+  --background-profile: #9ba0a5;
+  --text-primary: white;
+  --text-primary-hover: #b4b0ab;
   --text-secondary: Grey;
   --text-green: Green;
   --text-white: White;
   --text-blue: blue;
-  --accent-color: rgb(224, 163, 224);
-  --border-orange: #f26925;
-  --border-blue: rgb(102, 102, 226);
+  --accent-color: #e0a3e0;
+  --border-orange: #f26925f6;
+  --border-blue: #6666e2;
   --border-white: Grey;
   --border-lightBlue: #598097;
 }
