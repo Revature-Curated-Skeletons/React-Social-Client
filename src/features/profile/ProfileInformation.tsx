@@ -17,6 +17,11 @@ export default function ProfileInformation(props: any) {
   const { id } = useParams();
   const [showEditButton, setShowEditButton] = React.useState(false);
 
+  //attempting follow button hide
+  //added followbutton state similar to showEd
+  const [showFollowButton, setShowFollowButton] = React.useState(false);
+  
+
   // Initial states for our constants
   let initialFollowerNum:number = 0;
   let initalUserId:string = "";
@@ -25,9 +30,7 @@ export default function ProfileInformation(props: any) {
 
   // Constants to be manipulated within .then statements
   const [followButton, setButton] = React.useState(buttonName);
-  const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
   const [toggleButton, setToggleButton] = React.useState(false);
-  const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
 
   // Fetches a fresh profile
   function updateProfile() {
@@ -40,7 +43,8 @@ export default function ProfileInformation(props: any) {
 
   // Toggles the follow button and handles the follow api calls.
   function toggleFollowButton() {
-    if (toggleButton === true){
+    if (toggleButton){
+      //profile.can_follow = false;
       setToggleButton(false);
       followUser(profile.user_id).then( async () => {
           updateProfile();
@@ -48,6 +52,7 @@ export default function ProfileInformation(props: any) {
       parseFollowBtn();
 
     } else {
+      //profile.can_follow = true;
       setToggleButton(true);
       unfollowUser(profile.user_id).then(async () => {
           updateProfile();
@@ -58,7 +63,7 @@ export default function ProfileInformation(props: any) {
   }
 
   function parseFollowBtn() {
-    if (toggleButton === true) {
+    if (toggleButton) {
       buttonName = "Follow";
       setButton(buttonName);
     }
@@ -73,18 +78,28 @@ export default function ProfileInformation(props: any) {
     if(id === undefined) {
       dispatch(getProfileAsync(profile));
       setShowEditButton(true);
+      setShowFollowButton(false);
       setTimeout(() => setDoneLoading(true), 200);
     } else {
       dispatch(getProfileByIdAsync(id));
       checkProfileOwnership(id).then((owns) => {
         setShowEditButton(owns);
-        setTimeout(() => setDoneLoading(true), 200);
+        setShowFollowButton(!owns);
+        console.log(owns);
+        console.log(showFollowButton);
+        if (!owns) {
+        setTimeout(() => setDoneLoading(true), 300);
+          canFollow(profile.user_id).then((data) => {
+            //profile.can_follow = data;
+             setToggleButton(data);
+             parseFollowBtn();
+          });
+        }
+        
+        setTimeout(() => setDoneLoading(true), 300);
       })
     }
-    canFollow(profile.user_id).then((data) => {
-      setToggleButton(data);
-      parseFollowBtn();
-    });
+    
   }, [props.beep]); // beep beep :^)
 
   const goToEditProfile = () => {
@@ -106,7 +121,7 @@ export default function ProfileInformation(props: any) {
               {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
             </Card.Title>
             
-                {!(id === undefined) ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
+                {showFollowButton ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
 
             <Card.Text id="AboutMe">
               <h5>About Me</h5>
