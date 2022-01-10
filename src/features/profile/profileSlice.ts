@@ -15,7 +15,10 @@ const initialState: ProfileState = {
     location: "",
     profile_img: "",
     header_img: "",
-    about_me: ""
+    about_me: "",
+    user_id:"",
+    follower_num: 0,
+    following_num: 0
 }
 
 export const getProfileAsync = createAsyncThunk<Profile, object>(

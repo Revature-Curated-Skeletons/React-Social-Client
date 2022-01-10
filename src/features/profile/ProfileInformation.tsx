@@ -6,7 +6,8 @@ import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
-import { reverbClientWithAuth } from "../../remote/reverb-api/reverbClient";
+import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
+import { updateProfile } from "firebase/auth";
 
 export default function ProfileInformation(props: any) {
   const [doneLoading, setDoneLoading] = React.useState(false);
@@ -16,25 +17,53 @@ export default function ProfileInformation(props: any) {
   const { id } = useParams();
   const [showEditButton, setShowEditButton] = React.useState(false);
 
-  let buttonName = "Follow user";
-  const [follow, setButton] = useState(buttonName);
-  let toggleButton:boolean = true;
+  // Initial states for our constants
+  let initialFollowerNum:number = 0;
+  let initalUserId:string = "";
+  let buttonName = "Follow";
+  let initialFollowingNum:number = 0;
 
-  function getFollowers() {
-    reverbClientWithAuth.get("/get-followers/{userId}");
+  // Constants to be manipulated within .then statements
+  const [followButton, setButton] = React.useState(buttonName);
+  const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
+  const [toggleButton, setToggleButton] = React.useState(false);
+  const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
+
+  // Fetches a fresh profile
+  function updateProfile() {
+    if (id === undefined)
+    {
+        setTimeout(() => dispatch(getProfileAsync(profile)), 100);
+    }
+    else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
   }
 
+  // Toggles the follow button and handles the follow api calls.
   function toggleFollowButton() {
-
-    getFollowers();
-
     if (toggleButton === true){
-      toggleButton = false;
-      buttonName = "Unfollow user"
-      setButton(buttonName);
+      setToggleButton(false);
+      followUser(profile.user_id).then( async () => {
+          updateProfile();
+      })
+      parseFollowBtn();
+
     } else {
-      toggleButton = true;
-      buttonName = "follow user"
+      setToggleButton(true);
+      unfollowUser(profile.user_id).then(async () => {
+          updateProfile();
+      })
+
+      parseFollowBtn();
+    }
+  }
+
+  function parseFollowBtn() {
+    if (toggleButton === true) {
+      buttonName = "Follow";
+      setButton(buttonName);
+    }
+    else {
+      buttonName = "Unfollow"
       setButton(buttonName);
     }
   }
@@ -52,6 +81,10 @@ export default function ProfileInformation(props: any) {
         setTimeout(() => setDoneLoading(true), 200);
       })
     }
+    canFollow(profile.user_id).then((data) => {
+      setToggleButton(data);
+      parseFollowBtn();
+    });
   }, [props.beep]); // beep beep :^)
 
   const goToEditProfile = () => {
@@ -66,16 +99,15 @@ export default function ProfileInformation(props: any) {
           <Card.Body id="profileBody">
             <Card.Title id = "ProfileName">
               {profile.first_name} {profile.last_name} 
+              <div>
+                <h6 id="followers-num">followers: {profile.follower_num}</h6>
+                <h6 id="following-num">following: {profile.following_num}</h6>
+              </div>
               {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
             </Card.Title>
-            {/*
-            <button type="button" onClick={() =>toggleFollowButton()} > {follow} </button>
-            <br></br>
-            <text>followers: </text>
-            <br></br>
-            <text>following: </text>
-            <br /><br />
-            */}
+            
+                {!(id === undefined) ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
+
             <Card.Text id="AboutMe">
               <h5>About Me</h5>
               {profile.about_me}

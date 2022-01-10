@@ -7,7 +7,10 @@ export interface Profile {
     location: string,
     profile_img: string,
     header_img: string,
-    about_me: string
+    about_me: string,
+    user_id: string,
+    follower_num: number,
+    following_num: number
 }
 
 export const initialProfile: Profile = {
@@ -19,5 +22,8 @@ export const initialProfile: Profile = {
     location: "",
     profile_img: "",
     header_img: "",
-    about_me: ""
+    about_me: "",
+    user_id: "",
+    follower_num: 0,
+    following_num: 0
 }

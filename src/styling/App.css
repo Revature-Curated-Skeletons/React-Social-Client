@@ -342,6 +342,10 @@ h3 {
   box-shadow: 0px 0px 3px var(--background-profile);
 }
 
+#ProfileImageHeader{
+  display: flex;
+}
+
 #EditProfile {
   width: 1000px;
   max-width: 1000px;
@@ -391,6 +395,8 @@ h3 {
   top: 18%;
   left: 52.5%;
   z-index: 2;
+  margin-top: -15%;
+  background: lightgrey;
 }
 
 #LoadingImg {
@@ -399,6 +405,23 @@ h3 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#follow-btn {
+  float: right;
+  background: var(--text-green);
+}
+
+#following-num {
+  margin-top: -3%;
+  padding-right: 10px;
+  float: right;
+}
+
+#followers-num {
+  margin-top: -5%;
+  padding-right: 10px;
+  float: right;
 }
 
 /* EDIT PROFILE */
