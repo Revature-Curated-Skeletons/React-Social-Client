@@ -86,9 +86,10 @@ const Feed = () => {
           onHide={() => setModalShowComment(false)}
           postId={postId}
         />
-        {posts.map((post) => (<PostComponent shouldUpdateLikes={shouldUpdateLikes}
-          post={post} leaveComment={util.leaveComment} key={post.id} />)).reverse()}
+        
       </div>
+      {posts.map((post) => (<PostComponent shouldUpdateLikes={shouldUpdateLikes}
+          post={post} leaveComment={util.leaveComment} key={post.id} />)).reverse()}
     </div>
   );
 }
