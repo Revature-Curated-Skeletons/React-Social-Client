@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card, Stack } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
-import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
-import { updateProfile } from "firebase/auth";
+import { canFollow, followUser, unfollowUser } from "../follow/followers.api";
+// import { updateProfile } from "firebase/auth";
 
 export default function ProfileInformation(props: any) {
-  const [doneLoading, setDoneLoading] = React.useState(false);
+  const [doneLoading, setDoneLoading] = useState(false);
   const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const [showEditButton, setShowEditButton] = React.useState(false);
+  const [showEditButton, setShowEditButton] = useState(false);
 
   // Initial states for our constants
   let initialFollowerNum:number = 0;
@@ -24,10 +23,10 @@ export default function ProfileInformation(props: any) {
   let initialFollowingNum:number = 0;
 
   // Constants to be manipulated within .then statements
-  const [followButton, setButton] = React.useState(buttonName);
-  const [followerNum, setFollowerNum] = React.useState(initialFollowerNum);
-  const [toggleButton, setToggleButton] = React.useState(false);
-  const [followingNum, setFollowingNum] = React.useState(initialFollowingNum);
+  const [followButton, setButton] = useState(buttonName);
+  const [followerNum, setFollowerNum] = useState(initialFollowerNum);
+  const [toggleButton, setToggleButton] = useState(false);
+  const [followingNum, setFollowingNum] = useState(initialFollowingNum);
 
   // Fetches a fresh profile
   function updateProfile() {
