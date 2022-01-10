@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Stack } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@material-ui/core";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
 import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
 import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
-import { updateProfile } from "firebase/auth";
 
+/*
+    Welcome to the profile information page. 
+    This page controls the profiles that appear when you click on a user's name in comments or posts.
+
+*/
 export default function ProfileInformation(props: any) {
   const [doneLoading, setDoneLoading] = React.useState(false);
   const profile = useSelector(selectProfile);
@@ -23,84 +26,93 @@ export default function ProfileInformation(props: any) {
   
 
   // Initial states for our constants
-  let initialFollowerNum:number = 0;
-  let initalUserId:string = "";
-  let buttonName = "Follow";
-  let initialFollowingNum:number = 0;
+  let initialFollowState = false;
 
   // Constants to be manipulated within .then statements
-  const [followButton, setButton] = React.useState(buttonName);
-  const [toggleButton, setToggleButton] = React.useState(false);
+  const [isFollowing, setIsFollowing] = React.useState(initialFollowState);
 
   // Fetches a fresh profile
   function updateProfile() {
     if (id === undefined)
     {
+        // After a delay, get the profile of the current user.
         setTimeout(() => dispatch(getProfileAsync(profile)), 100);
     }
+    // After a delay, get the profile of a user from a given ID.
     else setTimeout(() => dispatch(getProfileByIdAsync(id)), 100);
   }
 
+
   // Toggles the follow button and handles the follow api calls.
   function toggleFollowButton() {
-    if (toggleButton){
-      //profile.can_follow = false;
-      setToggleButton(false);
-      followUser(profile.user_id).then( async () => {
-          updateProfile();
-      })
-      parseFollowBtn();
 
-    } else {
-      //profile.can_follow = true;
-      setToggleButton(true);
-      unfollowUser(profile.user_id).then(async () => {
-          updateProfile();
-      })
+    // If the user is NOT currently following the page, then they have just decided to follow them.
+    if (!isFollowing){ 
+    
+        // Perform an API call that sets the user as a follower.
+        followUser(profile.user_id).then( async () => { 
+            // Once the call is done, update the page and call a new profile with the accurate number.
+            setIsFollowing(true);
+            updateProfile();
+        })
 
-      parseFollowBtn();
-    }
-  }
+    } 
 
-  function parseFollowBtn() {
-    if (toggleButton) {
-      buttonName = "Follow";
-      setButton(buttonName);
-    }
+    // If the user IS currently following the page, then they have just decided to unfollow them.
     else {
-      buttonName = "Unfollow"
-      setButton(buttonName);
+        // Perform an API call that removes the user from the followers table.
+        unfollowUser(profile.user_id).then(async () => {
+            // After the call completes, set is following appropriately and update the profile to get the accurate count.
+            setIsFollowing(false);
+            updateProfile();
+        })
     }
+
+
   }
+  
+
 
   useEffect(() => {
+    // Set the doneLoading boolean to false so that we keep them on the loading screen until things are done.
     setDoneLoading(false);
-    if(id === undefined) {
-      dispatch(getProfileAsync(profile));
-      setShowEditButton(true);
-      setShowFollowButton(false);
-      setTimeout(() => setDoneLoading(true), 200);
-    } else {
-      dispatch(getProfileByIdAsync(id));
-      checkProfileOwnership(id).then((owns) => {
-        setShowEditButton(owns);
-        setShowFollowButton(!owns);
-        console.log(owns);
-        console.log(showFollowButton);
-        if (!owns) {
-        setTimeout(() => setDoneLoading(true), 300);
-          canFollow(profile.user_id).then((data) => {
-            //profile.can_follow = data;
-             setToggleButton(data);
-             parseFollowBtn();
-          });
-        }
+
+    // Load the page
+    if(id === undefined) { // If there's no id in the path variable then we go to the logged in user's profile
+
+        // Gets their profile from the stored profile for the user.
+        dispatch(getProfileAsync(profile)); 
+
+        // Show the edit button and hide the follow
+        setShowEditButton(true); 
+        setShowFollowButton(false);
         
-        setTimeout(() => setDoneLoading(true), 300);
-      })
+        // Set a timeout for any API calls to finish, and when it finishes, tell the page it is ready to be loaded which swaps us off the loading page.
+        setTimeout(() => setDoneLoading(true), 200);
+    } else { // If there is an id in the path, then we load the corrosponding profile.
+        // Make an api call for the appropriate profile
+        dispatch(getProfileByIdAsync(id));
+
+        // Check if the profile is owned by the user who navigated into it.
+        checkProfileOwnership(id).then((owns) => {
+            // Set the buttons appropriately to the ownership rights.
+            setShowEditButton(owns);
+            setShowFollowButton(!owns);
+
+            if (!owns) { // If they don't own it, check if they can follow it.
+                // Checks if the user can follow with an api call
+                canFollow(profile.user_id).then((data) => {
+                    // Stores the data from the fetch properly which will rerender the button.
+                    setIsFollowing(data);
+                });
+            }
+            
+            // Give the API time to respond before we show our page.
+            setTimeout(() => setDoneLoading(true), 300);
+        })
     }
     
-  }, [props.beep]); // beep beep :^)
+  }, [props.beep]); // beep beep :^) (Not sure why this is here. Possibly some sort of ownership parsing?)
 
   const goToEditProfile = () => {
     history.push("/editProfile");
@@ -121,7 +133,7 @@ export default function ProfileInformation(props: any) {
               {showEditButton ? <Button id="EditProfileButton" onClick={goToEditProfile}>Edit Profile</Button> : <></>}
             </Card.Title>
             
-                {showFollowButton ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {followButton} </Button> : <></>}
+                {showFollowButton ? <Button variant="success" id="follow-btn" type="button" onClick={() =>toggleFollowButton()} > {isFollowing ? "Unfollow" : "Follow"} </Button> : <></>}
 
             <Card.Text id="AboutMe">
               <h5>About Me</h5>
