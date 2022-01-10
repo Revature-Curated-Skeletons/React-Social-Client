@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card, Stack } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileAsync, getProfileByIdAsync, selectProfile } from "./profileSlice";
@@ -7,18 +7,19 @@ import { checkProfileOwnership } from "./profile.api";
 import Image from 'react-bootstrap/Image'
 import { canFollow, followUser, getUserFollowers, getUserFollowings, getUserIdFromProfileId, unfollowUser } from "../follow/followers.api";
 
+
 /*
     Welcome to the profile information page. 
     This page controls the profiles that appear when you click on a user's name in comments or posts.
 
 */
 export default function ProfileInformation(props: any) {
-  const [doneLoading, setDoneLoading] = React.useState(false);
+  const [doneLoading, setDoneLoading] = useState(false);
   const profile = useSelector(selectProfile);
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const [showEditButton, setShowEditButton] = React.useState(false);
+  const [showEditButton, setShowEditButton] = useState(false);
 
   //attempting follow button hide
   //added followbutton state similar to showEd
