@@ -81,6 +81,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
             Logout
           </NavLink>
 
+          <NavLink id="followingFeed" as={Link} to={"/feed/following"} eventKey="home">
+           Follow Feed
+          </NavLink>
+
         </div>
       </Nav>
   }

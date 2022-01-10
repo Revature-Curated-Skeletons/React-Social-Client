@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Post } from './post';
-import { createPost, getAllPosts } from "./post.api";
+import { createPost, getAllPosts, getFollowingPosts } from "./post.api";
 import { store } from "../../app/store";
 
 
@@ -13,6 +13,17 @@ export const getPostsAsync = createAsyncThunk<Post[], object>(
     async (nothing, thunkAPI) => {
         try {
             return await getAllPosts();
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+export const getFollowPostsAsync = createAsyncThunk<Post[], object>(
+    'post/get/async',
+    async (nothing, thunkAPI) => {
+        try {
+            return await getFollowingPosts();
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }

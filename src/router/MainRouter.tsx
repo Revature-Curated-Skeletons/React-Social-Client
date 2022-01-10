@@ -8,6 +8,7 @@ import { useAppDispatch } from "../app/hooks";
 import { logout } from '../features/login/authSlice'
 import ProfilePage from "../features/profile/ProfilePage";
 import EditProfilePage from "../features/profile/EditProfilePage";
+import FollowingFeed from "../features/feed/FollowingFeed";
 
 
 interface MainRouterProps{
@@ -46,6 +47,9 @@ const MainRouter:React.FC<MainRouterProps> = ({loggedIn}:{loggedIn:string}) => {
           </Route>
           <Route path="/">
             <Feed/>
+          </Route>
+          <Route path="/feed/following">
+            <FollowingFeed/>
           </Route>
         </Switch>
       </div>
