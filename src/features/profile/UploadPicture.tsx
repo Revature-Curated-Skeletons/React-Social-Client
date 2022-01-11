@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
+import { useHistory } from 'react-router-dom';
 import {getProfileAsync, selectProfile} from "./profileSlice";
 import { reverbClientUploadFileWithAuth } from "../../remote/reverb-api/reverbClient";
 
 export default function Upload_Picture(props:any) {
   const [cjsFile, setcjsFile] = React.useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
   const profile = useSelector(selectProfile);
   const submitForm = async (event:any) => {
     event.preventDefault();
@@ -22,6 +24,7 @@ export default function Upload_Picture(props:any) {
       //let data= resp.data;
       dispatch(getProfileAsync(profile));
       console.log("Upload finished");
+      history.push('/profile');
     }
     catch{
       console.log("upload failed")
@@ -34,8 +37,10 @@ export default function Upload_Picture(props:any) {
   return (
     <div>
       <form onSubmit={submitForm}>
-          <input type="file" onChange={(e) => handleChangeFile(e)} />
-          <input type="submit" value="upload"/>
+          <h6>
+            <input type="file" accept=".jpg,.jpeg,.png,.gif)" onChange={(e) => handleChangeFile(e)} />
+            <input type="submit" value="upload"/>
+          </h6>
       </form>
     </div>
   );
