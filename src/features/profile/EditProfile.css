@@ -1,0 +1,97 @@
+.card {
+    width: 400px;
+    max-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: var(--background-grey);
+}
+
+.container,
+.form_input,
+.btn {
+    font: 500 1rem 'Quicksand', sans-serif;
+}
+
+
+.form_input-group {
+    margin-bottom: 1rem;
+    color:var(--text-primary);
+}
+
+.form_input {
+    display: block;
+    width: 100%;
+    padding: 0.7rem;
+    box-sizing: border-box;
+    border-radius: 4px ;
+    border: 2px solid var(--border-white);
+    outline: none;
+    background: var(--background);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.form_input:focus {
+    border-color: var(--border-blue);
+    background: var(--background-grey);
+}
+
+
+.btn_color {
+    width: 100%;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--text-primary);
+    border: none;
+    border-radius: 2px;
+    background:  var(--background-lightBlue);
+    cursor: pointer;
+    outline: none;
+
+
+}
+
+.cancel_color {
+    width: 100%;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--text-white);
+    border: none;
+    border-radius: 2px;
+    background:  var(--background-orange);
+    cursor: pointer;
+    outline: none;
+}
+
+.cancel_color:hover {
+    background: var(--background-orange);
+}
+
+.btn_color:hover {
+    background: var(--background-lightBlue);
+}
+
+.btn:active {
+    transform: scale(.95);
+}
+
+#form_text {
+    text-align: center;
+}
+
+.form_link {
+    color: var(--text-blue);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.form_link:hover {
+    text-decoration: underline;
+    color: var(--text-green);
+}
+
+
