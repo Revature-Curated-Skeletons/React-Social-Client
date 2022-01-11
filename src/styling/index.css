@@ -1,10 +1,20 @@
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 #app {
+  height: 100%;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 5fr;
