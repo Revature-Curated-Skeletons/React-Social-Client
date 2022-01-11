@@ -46,6 +46,7 @@ a:link, a:active, a:visited {
   --border-blue: blue;
   --border-white: white;
   --border-lightBlue: #72a4c2;
+  --background-delete: #ff0000;
 }
 
 [data-theme="dark"] {
@@ -74,4 +75,5 @@ a:link, a:active, a:visited {
   --border-blue: #6666e2;
   --border-white: Grey;
   --border-lightBlue: #598097;
+  --background-delete: #ff2828;
 }

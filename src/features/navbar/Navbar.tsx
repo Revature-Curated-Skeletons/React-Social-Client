@@ -59,9 +59,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
       </Nav>
   } else {
     sideNavBar = 
+    <div id="AnotherContainerToRemove">
       <Nav id="navbar" defaultActiveKey="home">
 
-        <NavLink id="homeLink" data-testid="logolink" as={Link} to={"/"} eventKey="home">
+        <NavLink id="homeLink" data-testid="logolink" as={Link} to={"/feed"} eventKey="home">
           <img
             alt=""
             src={Logo}
@@ -77,6 +78,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
             Profile
           </NavLink>
 
+          <Nav.Link as={Link} to={"/createGroup"} className="navbar-link" id="group-Link" eventKey="group-link" onClick ={() => history.push("/createGroup")}>
+            Create Group
+          </Nav.Link>
+
           <NavLink as={Link} to={"/logout"} id="logoutLink" className="navbar-link" eventKey="logout-link">
             Logout
           </NavLink>
@@ -87,6 +92,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
 
         </div>
       </Nav>
+      </div>
   }
 
   return (

@@ -115,6 +115,7 @@ const profileSlice = createSlice( {
 type Rootstate = ReturnType<typeof store.getState>;
 export const selectProfile = ( state: Rootstate ) =>
 {
+    console.log(state);
     return state.profile
 }
 

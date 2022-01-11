@@ -98,7 +98,7 @@ element.item(i).classList.toggle("dark-mode");
   display: block;
   background-color: var(--background-grey);
   padding: 1.5vh 0vh 1vh 1.5vh;
-  height: 100%;
+  height: 100vh;
   font-size: 3vh;
   line-height: 30px;
   box-shadow: 0px 0px 2px var(--background-grey);
@@ -281,6 +281,7 @@ h3 {
   border-top-right-radius: 0px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  margin: 0 auto;
 }
 
 #feedButtons {
@@ -456,7 +457,8 @@ h3 {
 }
 
 #updateProfileBtnCol,
-#cancelProfileBtnCol {
+#cancelProfileBtnCol,
+.FormButtons {
   text-align: center;
 }
 
@@ -510,7 +512,9 @@ button {
 #leaveCommentBtn,
 #submitCommentBtn,
 #submitPostBtn,
-#UpdateProfile {
+#UpdateProfile,
+#UpdateGroup,
+#CreateGroup {
   background-color: var(--background-lightBlue);
   border-color: var(--background-lightBlue);
   color: var(--text-primary);
@@ -520,7 +524,9 @@ button {
 #loginCard button,
 #postBtn,
 #refreshBtn,
-#reverbButton {
+#reverbButton,
+#edit_group,
+#EditGroupProfileButton {
   background-color: var(--background-orange);
   border-color: var(--border-orange);
   box-shadow: 0px 0px 4px var(--border-orange);
@@ -539,10 +545,17 @@ button {
   margin-left: 5vw;
 }
 
-#CancelEdits {
+#CancelEdits,
+#CancelGroup,
+#CancelCreateGroup {
   background-color: var(--background-yellow);
   border-color: var(--background-yellow);
   color: var(--text-primary);
+}
+
+#DeleteGroup {
+  background-color: var(--background-delete);
+  border-color: var(--background-delete);
 }
 
 #loginCard button {
@@ -564,7 +577,9 @@ button {
 
 #CancelEdits,
 #EditProfileButton,
-#UpdateProfile {
+#UpdateProfile,
+.FormButtons,
+#EditGroupProfileButton {
   border-radius: 10px;
 }
 
@@ -573,7 +588,10 @@ button {
   margin: 0.5vh 0vw 0vh 2vw;
 }
 
-.follow-btn {
+.follow-btn,
+#GroupJoinButton,
+#GroupLeaveButton,
+#EditGroupProfileButton {
   margin-left: 15px;
   padding: 1.5px 9px;
   border-radius: 20px;
@@ -586,7 +604,10 @@ button {
   margin-top: -3%;
 }
 
-.follow-btn:hover {
+.follow-btn:hover,
+#GroupJoinButton:hover,
+#GroupLeaveButton:hover,
+#EditGroupProfileButton:hover {
   background-color: rgba(0, 190, 95, 0.8);
   border-color: rgba(0, 190, 95, 0.8);
   box-shadow: 0px 0px 2px rgba(0, 190, 95, 0.8);
@@ -608,7 +629,8 @@ button {
 }
 
 #CancelEdits,
-#UpdateProfile {
+#UpdateProfile,
+.FormButtons {
   width: 10em;
   height: 2.5em;
 }
@@ -638,7 +660,10 @@ body,
 #search-results,
 #submitCommentBtn, #submitCommentBtn:hover,
 #submitPostBtn, #submitPostBtn:hover,
-#UpdateProfile, #UpdateProfile:hover {
+#UpdateProfile, #UpdateProfile:hover,
+.FormButtons, .FormButtons:hover,
+#EditGroupProfileButton, #EditGroupProfileButton:hover,
+.GroupProfileButton, .GroupProfileButton:hover {
   transition-property: all;
   -webkit-transition-property: all;
   transition-duration: 0.3s;
@@ -655,13 +680,32 @@ body,
 #refreshBtn:hover,
 #submitCommentBtn:hover,
 #submitPostBtn:hover,
-#UpdateProfile:hover {
+#UpdateProfile:hover,
+.FormButtons:hover,
+#EditGroupProfileButton:hover,
+.GroupProfileButton:hover {
   transform: scale(1.02);
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 #homeLink:hover {
   transform: scale(1.03);
+}
+
+.groupEditButtonsRow {
+  text-align: center;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.GroupProfileButton {
+  float: right;
+}
+
+/* Used to make the navbar sticky to the left, Personally created that div to make the sticky work, why does it work??? who knows*/
+#AnotherContainerToRemove {
+  position: sticky;
+  top: 0;
 }
 
 .form-control,

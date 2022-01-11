@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Post } from './post';
-import { createPost, getAllPosts, getFollowingPosts } from "./post.api";
+import { createGroupPost, createPost, getAllGroupPosts, getAllPosts, getFollowingPosts} from "./post.api";
 import { store } from "../../app/store";
 import { ActionCodeOperation } from "firebase/auth";
-
 
 export type PostState = Post[];
 
@@ -19,6 +18,13 @@ export const getPostsAsync = createAsyncThunk<Post[], object>(
         }
     }
 );
+
+export const getGroupPostsAsync = createAsyncThunk(
+    'post/getgroups/async',
+    async (groupName: string | undefined, thunkAPI) => {
+            return await getAllGroupPosts(groupName as string);
+    }
+)
 
 export const getFollowPostsAsync = createAsyncThunk<Post[], object>(
     'post/getfollow/async',
@@ -42,10 +48,24 @@ export const postPostAsync = createAsyncThunk<Post, Post>(
     }
 );
 
-const postSlice = createSlice({
+export const postGroupPostAsync = createAsyncThunk<Post, Post>(
+    'post/post/async',
+    async (neoPost: Post, thunkAPI) => {
+        try {
+            return await createGroupPost(neoPost);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+export const postSlice = createSlice({
     name: 'posts',
     initialState: initialState,
     reducers: {
+        clear: (state) => {
+            state.length = 0;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -74,6 +94,9 @@ const postSlice = createSlice({
         .addCase(postPostAsync.rejected, (state, action) => {
             // console.log(action.error);
         })
+        .addCase(getGroupPostsAsync.fulfilled, (state, action) => {
+            return action.payload;
+        })
         .addCase(getFollowPostsAsync.rejected, (state, action) => {
             // state.push(action.payload);
         })
@@ -84,5 +107,7 @@ type Rootstate = ReturnType<typeof store.getState>;
 export const selectPosts = (state: Rootstate) => {
     return state.posts
 }
+
+export const { clear } = postSlice.actions;
 
 export default postSlice.reducer;

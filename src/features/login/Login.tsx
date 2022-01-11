@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useAppDispatch } from '../../app/hooks'
 import { setTokenAsync } from './authSlice'
 import { reverbClientWithAuth } from '../../remote/reverb-api/reverbClient'
+import { setUserAsync } from './userSlice'
 import { useHistory } from 'react-router-dom'
 import { getIdToken } from 'firebase/auth'
 
@@ -27,9 +28,7 @@ export default function Login() {
 
       // Token is set to store on login
       await dispatch(setTokenAsync({ email, password }));
-
-      // Call to backend on successful log in that ensures user is already stored in our database, if it is not then the user is added to the database.
-      reverbClientWithAuth.post("/api/user/login");
+      await dispatch(setUserAsync({}));
       history.push("/feed")
 
     }

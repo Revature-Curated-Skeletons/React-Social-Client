@@ -7,6 +7,12 @@ export const createPost = async (neoPost: Post): Promise<Post> => {
   return post;
 }
 
+export const createGroupPost = async (neoPost: Post): Promise<Post> => {
+  const {data: post} = await reverbClientWithAuth.post<Post>('/api/post/submit', neoPost);
+
+  return post;
+}
+
 export const getAllPosts = async (): Promise<Post[]> => {
   const {data: posts} = await reverbClientWithAuth.get<Post[]>('/api/post/get-all-posts');
   //const {data: posts} = await reverbClientWithAuth.get<Post[]>('/api/post/get-following-posts');
@@ -17,6 +23,12 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 export const getFollowingPosts = async (): Promise<Post[]> => {
   const {data: posts} = await reverbClientWithAuth.get<Post[]>('/api/post/get-following-posts');
+
+  return posts;
+}
+
+export const getAllGroupPosts = async (groupName: string): Promise<Post[]> => {
+  const {data: posts} = await reverbClientWithAuth.get<Post[]>(`/api/post/get-group-posts/${groupName}`)
 
   return posts;
 }
