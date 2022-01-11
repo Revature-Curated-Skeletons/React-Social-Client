@@ -30,6 +30,9 @@ const MainRouter:React.FC<MainRouterProps> = ({loggedIn}:{loggedIn:string}) => {
     toReturn =
       <div>
         <Switch>
+          <Route path="/feed/following">
+            <FollowingFeed/>
+          </Route>
           <Route path="/profile/:id">
             <ProfilePage beep={false}/>
           </Route>
@@ -48,9 +51,7 @@ const MainRouter:React.FC<MainRouterProps> = ({loggedIn}:{loggedIn:string}) => {
           <Route path="/">
             <Feed/>
           </Route>
-          <Route path="/feed/following">
-            <FollowingFeed/>
-          </Route>
+          
         </Switch>
       </div>
   }
