@@ -13,8 +13,10 @@ function switchTheme() {
   let current = document.documentElement.getAttribute("data-theme");
   if(current == "light"){
     document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("data-theme","dark");
   }else{
     document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("data-theme","light");
   }
 }
 
@@ -84,6 +86,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
         </div>
       </Nav>
   }
+
+  const theme = localStorage.getItem("data-theme") ? localStorage.getItem("data-theme"): "light";
+  document.documentElement.setAttribute("data-theme", theme!);
 
   return (
     <div>
