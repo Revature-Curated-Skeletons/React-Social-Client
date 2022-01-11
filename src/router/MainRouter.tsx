@@ -8,6 +8,7 @@ import { useAppDispatch } from "../app/hooks";
 import { logout } from '../features/login/authSlice'
 import ProfilePage from "../features/profile/ProfilePage";
 import EditProfilePage from "../features/profile/EditProfilePage";
+import FollowingFeed from "../features/feed/FollowingFeed";
 
 
 interface MainRouterProps{
@@ -29,6 +30,9 @@ const MainRouter:React.FC<MainRouterProps> = ({loggedIn}:{loggedIn:string}) => {
     toReturn =
       <div>
         <Switch>
+          <Route path="/feed/following">
+            <FollowingFeed/>
+          </Route>
           <Route path="/profile/:id">
             <ProfilePage beep={false}/>
           </Route>
@@ -47,6 +51,7 @@ const MainRouter:React.FC<MainRouterProps> = ({loggedIn}:{loggedIn:string}) => {
           <Route path="/">
             <Feed/>
           </Route>
+          
         </Switch>
       </div>
   }
