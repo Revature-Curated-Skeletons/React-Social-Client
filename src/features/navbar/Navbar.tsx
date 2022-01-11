@@ -59,7 +59,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ loggedIn }: { loggedIn: s
       </Nav>
   } else {
     sideNavBar = 
-    <div id="AnotherContainerToRemove">
+    <div id="NavbarContainer">
       <Nav id="navbar" defaultActiveKey="home">
 
         <NavLink id="homeLink" data-testid="logolink" as={Link} to={"/feed"} eventKey="home">

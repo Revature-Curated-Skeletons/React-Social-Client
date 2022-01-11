@@ -102,6 +102,7 @@ element.item(i).classList.toggle("dark-mode");
   font-size: 3vh;
   line-height: 30px;
   box-shadow: 0px 0px 2px var(--background-grey);
+  position: sticky;
 }
 
 #navbar-links {
@@ -703,9 +704,10 @@ body,
 }
 
 /* Used to make the navbar sticky to the left, Personally created that div to make the sticky work, why does it work??? who knows*/
-#AnotherContainerToRemove {
+#NavbarContainer {
   position: sticky;
   top: 0;
+  height:100vh;
 }
 
 .form-control,
