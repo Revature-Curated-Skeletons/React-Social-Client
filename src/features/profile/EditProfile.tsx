@@ -66,7 +66,7 @@ export default function EditProfile() {
 
                                 <div className="form_input-group">
                                     <label htmlFor="about_me">About Me</label>
-                                    <textarea className="form_input" rows={10} name="about_me" placeholder="Your about me" value={input.about_me}
+                                    <textarea className="form_input" rows={9} name="about_me" placeholder="Your about me" value={input.about_me}
                                         onChange={handleChange}  > </textarea>
                                 </div>
                             </Col>
@@ -89,7 +89,8 @@ export default function EditProfile() {
                                     <input className="form_input" type="textbox" name="location" placeholder="Location" value={input.location}
                                         onChange={handleChange} required />
                                 </div>
-
+                                
+                                <br /> <br />
                                 <div className="form_input-group">
                                 <label htmlFor="profile_img">Select Profile Image</label>
                                     <div className='form_input'>
@@ -102,7 +103,6 @@ export default function EditProfile() {
                                         <Upload_Picture targetPicture="header"/>
                                     </div>
                                 </div>
-                                <br />
                             </Col>
                         </Row>
                         <Row id="editButtonsRow">
