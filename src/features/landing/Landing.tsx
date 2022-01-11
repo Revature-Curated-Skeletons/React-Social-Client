@@ -1,6 +1,7 @@
 import { Container, Row, Card } from 'react-bootstrap'
 import Logo from '../../assets/images/reverb_logo_final.png'
-import RevatureLogo from '../../assets/images/by_rev_logo.png'
+import ByRevatureLogo from '../../assets/images/by_rev_logo.png'
+import RevatureLogo from '../../assets/images/rev-logo.png'
 
 const Landing = ()=> {
     return(
