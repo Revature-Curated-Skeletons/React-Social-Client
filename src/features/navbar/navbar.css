@@ -1,9 +1,1 @@
-.navbar{
-    background-color:var(--background-grey);
-    width: 8vw; 
-    height:"100vh";
-    min-height:"450px";
-    font-size:"24px";
-    line-height:"30px";
-    color: var(--text-primary)
-  }
+/*This file is required to exist but is empty due to it being used by bootstrap*/

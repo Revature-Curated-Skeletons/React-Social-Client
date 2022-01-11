@@ -24,14 +24,14 @@ export default function ProfileInformation(props: any) {
 
   //attempting follow button hide
   //added followbutton state similar to showEd
-  const [showFollowButton, setShowFollowButton] = React.useState(false);
+  const [showFollowButton, setShowFollowButton] = useState(false);
   
 
   // Initial states for our constants
   let initialFollowState = false;
 
   // Constants to be manipulated within .then statements
-  const [isFollowing, setIsFollowing] = React.useState(initialFollowState);
+  const [isFollowing, setIsFollowing] = useState(initialFollowState);
 
   // Fetches a fresh profile
   function updateProfile() {
