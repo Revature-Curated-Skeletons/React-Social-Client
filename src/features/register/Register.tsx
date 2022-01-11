@@ -65,7 +65,7 @@ export default function Register() {
                 <Form id="inputLogin">
                   <Form.Group id="email">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" ref={emailRef} required />
+                    <Form.Control type="email" ref={emailRef} required autoFocus/>
                   </Form.Group>
                   <Form.Group id="password">
                     <Form.Label>Password</Form.Label>

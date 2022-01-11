@@ -4,6 +4,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getProfileAsync, selectProfile, updateProfileAsync } from './profileSlice';
+import Upload_Picture from './UploadPicture';
 
 export let util = { update: (e: any) => { }, cancel: (e: any) => { } };
 
@@ -90,17 +91,18 @@ export default function EditProfile() {
                                 </div>
 
                                 <div className="form_input-group">
-                                    <label htmlFor="profile_img">Select Profile Image</label>
-                                    <input className="form_input" type="text" name="profile_img" placeholder="Profile Image url" value={input.profile_img}
-                                        onChange={handleChange} required />
+                                <label htmlFor="profile_img">Select Profile Image</label>
+                                    <div className='form_input'>
+                                        <Upload_Picture targetPicture="profile"/>
+                                    </div>
                                 </div>
-
                                 <div className="form_input-group">
-                                    <label htmlFor="header_img">Select Header Image</label>
-                                    <input className="form_input" type="text" name="header_img" placeholder="Header Image url" value={input.header_img}
-                                        onChange={handleChange} required />
+                                <label htmlFor="header_img">Select Header Image</label>
+                                    <div className='form_input'>
+                                        <Upload_Picture targetPicture="header"/>
+                                    </div>
                                 </div>
-                                <br /><br />
+                                <br />
                             </Col>
                         </Row>
                         <Row id="editButtonsRow">
