@@ -228,11 +228,11 @@ h3 {
   border-top-right-radius: 15px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  background-color: var(--background-darkGrey);
+  background-color: var(--background-lightGrey);
   color: var(--text-primary);
   font-size: 0.8em;
   padding: 3px 15px;
-  box-shadow: 0px 0px 2px var(--background-darkGrey);
+  box-shadow: 0px 0px 2px var(--background-lightGrey);
 }
 
 .results-list {
@@ -275,9 +275,8 @@ h3 {
   display: flex;
   justify-content: center;
   width: 55vw;
-  background-color: var(--background-grey);
+  background-color: var(--background-transparent-darkGrey);
   padding: 20px 2vw;
-  box-shadow: 0px 0px 3px var(--background-grey);
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 15px;
@@ -312,7 +311,7 @@ h3 {
   margin-top: 5vh;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-  background: var(--background);
+  background: var(--background-transparent-darkGrey);
   color: var(--text-primary);
 }
 
@@ -380,8 +379,8 @@ h3 {
 }
 
 #AboutMe {
-  background-color: var(--background-darkGrey);
-  box-shadow: 0px 0px 3px var(--background-darkGrey);
+  background-color: var(--background-profile-fields);
+  box-shadow: 0px 0px 3px var(--background-lightGrey);
   color: var(--text-primary);
   margin-top: 4vh;
   padding: 15px 20px;
@@ -480,7 +479,7 @@ h3 {
   border-radius: 4px;
   border: 2px solid var(--border-lightBlue);
   outline: none;
-  background-color: var(--background);
+  background-color: var(--background-profile-fields);
   color: var(--text-primary);
   transition: background-color 0.2s, border-color 0.2s;
 }
@@ -514,6 +513,7 @@ button {
 #UpdateProfile {
   background-color: var(--background-lightBlue);
   border-color: var(--background-lightBlue);
+  color: var(--text-primary);
 }
 
 #EditProfileButton,
@@ -542,6 +542,7 @@ button {
 #CancelEdits {
   background-color: var(--background-yellow);
   border-color: var(--background-yellow);
+  color: var(--text-primary);
 }
 
 #loginCard button {
@@ -665,8 +666,9 @@ body,
 
 .form-control,
 .modal-body,
-.modal-content{
-  background: var(--background-profile);
+.modal-content,
+.modal-footer{
+  background: var(--background-profile-fields);
   color: var(--text-primary);
 }
 
