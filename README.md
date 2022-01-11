@@ -39,7 +39,7 @@ Reverb (styled as ReverB) is an upcoming social media app designed for Revature 
 * Clone the frontend and backend using the following commands:
 * * git clone https://github.com/Revature-Reverb/frontend.git
 * * git clone https://github.com/Revature-Reverb/backend.git
-* Enter the your firebase project’s web app’s settings and copy the configuration properties into the front end’s .env file.
+* Enter the your firebase project’s web app’s settings and copy the configuration properties into the front end’s firebase.ts file.
 * In the same settings, on the Service Provider tab, click on Generate new private key. Copy the contents of that key into the backend’s firebase_config.json file. 
 * In backend/src/main/resources, edit the applications.property file to have the correct spring.datasource parameters to the desired database.
 * Run Maven Update either within an IDE (having imported the backend as a Maven project) or using the following command in the backend directory:
@@ -48,7 +48,7 @@ Reverb (styled as ReverB) is an upcoming social media app designed for Revature 
 * * mvn spring-boot:run
 * Install frontend dependencies using the command:
 * * npm install --legacy-peer-deps
-* Connect to localhost:3000 to view the webapp.
+* Connect to Reverbapplication-env.eba-e5qubfd5.us-west-1.elasticbeanstalk.com to view the webapp.
 
 ## Usage
 
